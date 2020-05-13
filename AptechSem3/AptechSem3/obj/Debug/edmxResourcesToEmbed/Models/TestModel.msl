@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="APTECH_SEM_3ModelStoreContainer" CdmEntityContainer="APTECH_SEM_3Entities">
+    <EntitySetMapping Name="ANSWERs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.ANSWER">
+        <MappingFragment StoreEntitySet="ANSWER">
+          <ScalarProperty Name="ANSWER_ID" ColumnName="ANSWER_ID" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="ANSWER1" ColumnName="ANSWER" />
+          <ScalarProperty Name="STATUS" ColumnName="STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOB_APPLICATION">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.JOB_APPLICATION">
+        <MappingFragment StoreEntitySet="JOB_APPLICATION">
+          <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="PERSONAL_ID" ColumnName="PERSONAL_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+          <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
+          <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
+          <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
+          <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+          <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="JOB_POST">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.JOB_POST">
+        <MappingFragment StoreEntitySet="JOB_POST">
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+          <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
+          <ScalarProperty Name="POST" ColumnName="POST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUESTIONs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.QUESTION">
+        <MappingFragment StoreEntitySet="QUESTION">
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="QUESTION1" ColumnName="QUESTION" />
+          <ScalarProperty Name="POINT" ColumnName="POINT" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="REPORTs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.REPORT">
+        <MappingFragment StoreEntitySet="REPORT">
+          <ScalarProperty Name="CREATED" ColumnName="CREATED" />
+          <ScalarProperty Name="PERCENT_HIGH_SCORE" ColumnName="PERCENT_HIGH_SCORE" />
+          <ScalarProperty Name="PERCENT_MIDDLE_SCORE" ColumnName="PERCENT_MIDDLE_SCORE" />
+          <ScalarProperty Name="PERCENT_ATTEMPT" ColumnName="PERCENT_ATTEMPT" />
+          <ScalarProperty Name="PERCENT_FAST_FINISH" ColumnName="PERCENT_FAST_FINISH" />
+          <ScalarProperty Name="PERCENT_HIGH_PART_1" ColumnName="PERCENT_HIGH_PART_1" />
+          <ScalarProperty Name="PERCENT_MID_PART_1" ColumnName="PERCENT_MID_PART_1" />
+          <ScalarProperty Name="PERCENT_HIGH_PART_2" ColumnName="PERCENT_HIGH_PART_2" />
+          <ScalarProperty Name="PERCENT_MID_PART_2" ColumnName="PERCENT_MID_PART_2" />
+          <ScalarProperty Name="PERCENT_HIGH_PART_3" ColumnName="PERCENT_HIGH_PART_3" />
+          <ScalarProperty Name="PERCENT_MID_PART_3" ColumnName="PERCENT_MID_PART_3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RESULTs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.RESULT">
+        <MappingFragment StoreEntitySet="RESULT">
+          <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+          <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+          <ScalarProperty Name="TEST_INDEX" ColumnName="TEST_INDEX" />
+          <ScalarProperty Name="TEST_RESULT_1" ColumnName="TEST_RESULT_1" />
+          <ScalarProperty Name="TEST_RESULT_2" ColumnName="TEST_RESULT_2" />
+          <ScalarProperty Name="TEST_RESULT_3" ColumnName="TEST_RESULT_3" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TESTs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.TEST">
+        <MappingFragment StoreEntitySet="TEST">
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+          <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+          <ScalarProperty Name="TEST_NAME" ColumnName="TEST_NAME" />
+          <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="USRs">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.USR">
+        <MappingFragment StoreEntitySet="USR">
+          <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="TEST_QUESTION" TypeName="APTECH_SEM_3Model.TEST_QUESTION" StoreEntitySet="TEST_QUESTION">
+      <EndProperty Name="QUESTION">
+        <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+      </EndProperty>
+      <EndProperty Name="TEST">
+        <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>
