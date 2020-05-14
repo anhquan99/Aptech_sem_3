@@ -20,8 +20,26 @@ namespace AptechSem3
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                      "~/Scripts/bootstrap.js"));
-
+                      "~/Scripts/bootstrap.js",
+                      "~/Content/CandidateWeb/assets/js/vendor/modernizr-3.5.0.min.js",
+                      "~/Content/CandidateWeb/assets/js/vendor/jquery-1.12.4.min.js",
+                      "~/Content/CandidateWeb/assets/js/popper.min.js",
+                      "~/Content/CandidateWeb/assets/js/bootstrap.min.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.slicknav.min.js",
+                      "~/Content/CandidateWeb/assets/js/owl.carousel.min.js",
+                      "~/Content/CandidateWeb/assets/js/slick.min.js",
+                      "~/Content/CandidateWeb/assets/js/wow.min.js",
+                      "~/Content/CandidateWeb/assets/js/animated.headline.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.magnific-popup.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.nice-select.min.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.sticky.js",
+                      "~/Content/CandidateWeb/assets/js/contact.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.form.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.validate.min.js",
+                      "~/Content/CandidateWeb/assets/js/mail-Scripts.js",
+                      "~/Content/CandidateWeb/assets/js/jquery.ajaxchimp.min.js",
+                      "~/Content/CandidateWeb/assets/js/plugins.js",
+                      "~/Content/CandidateWeb/assets/js/main.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));

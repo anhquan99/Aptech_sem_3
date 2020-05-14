@@ -19,11 +19,11 @@
     <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="PHOTO" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="EDUCATION" Type="text" Nullable="false" />
     <Property Name="WORK_EXP" Type="text" Nullable="false" />
     <Property Name="CREATED" Type="datetime" Nullable="false" />
     <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
+    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
   </EntityType>
   <EntityType Name="JOB_POST">
     <Key>

@@ -6,9 +6,10 @@ using System.Web.Mvc;
 
 namespace AptechSem3.Controllers
 {
-    public class TestController : Controller
+    [Authorize(Roles ="MANAGER,CANDIDATE")]
+    public class DefaultController : Controller
     {
-        // GET: Test
+        // GET: Default
         public ActionResult Index()
         {
             return View();

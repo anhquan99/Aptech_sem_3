@@ -45,7 +45,7 @@
                             <!-- Logo -->
                             <div class="col-xl-2 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html"><img src="~/Content/CandidateWeb/assets/img/logo/logo.png" alt=""></a>
+                                    <a href="#"><img src="~/Content/CandidateWeb/assets/img/logo/logo.png" alt=""></a>
                                 </div>
                             </div>
                             <div class="col-xl-10 col-lg-10">
@@ -54,15 +54,18 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a href="@Url.Action("Home","Home")">Home</a></li>
-                                                <li><a href="@Url.Action("Home","JobPost")">Jobs</a></li>
-                                                <li><a href="@Url.Action("Home","Login")">Login</a></li>
+                                                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                                <li><a href="@Url.Action("JobPost", "Home")">Jobs</a></li>
+                                                @if (Session["username"] == null)
+                                                {
+                                                    <li><a href="@Url.Action("Login","Home")">Login</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="@Url.Action("Logout","Home")">Logout</a></li>
+                                                }
                                             </ul>
                                         </nav>
-                                    </div>
-                                    <!-- Header-btn -->
-                                    <div class="header-right-btn d-none d-lg-block ml-20">
-                                        <a href="contact.html" class="btn header-btn">Get A Qoue</a>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +143,7 @@
                             <div class="single-footer-caption mb-50">
                                 <!-- logo -->
                                 <div class="footer-logo">
-                                    <a href="index.html"><img src="~/Content/CandidateWeb/assets/img/logo/logo2_footer.png" alt=""></a>
+                                    <a href="#"><img src="~/Content/CandidateWeb/assets/img/logo/logo2_footer.png" alt=""></a>
                                 </div>
                                 <div class="footer-tittle">
                                     <div class="footer-pera">
@@ -209,7 +212,7 @@
     @Scripts.Render("~/Content/CandidateWeb/assets/js/contact.js")
     @Scripts.Render("~/Content/CandidateWeb/assets/js/jquery.form.js")
     @Scripts.Render("~/Content/CandidateWeb/assets/js/jquery.validate.min.js")
-    @Scripts.Render("~/Content/CandidateWeb/assets/js/mail-Scripts.js")
+    @Scripts.Render("~/Content/CandidateWeb/assets/js/mail-scripts.js")
     @Scripts.Render("~/Content/CandidateWeb/assets/js/jquery.ajaxchimp.min.js")
 
     <!-- Jquery Plugins, main Jquery -->

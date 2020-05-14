@@ -53,15 +53,18 @@
                                     <div class="main-menu d-none d-lg-block">
                                         <nav>
                                             <ul id="navigation">
-                                                <li><a href="@Url.Action("Home","Home")">Home</a></li>
-                                                <li><a href="@Url.Action("Home","JobPost")">Jobs</a></li>
-                                                <li><a href="@Url.Action("Home","Login")">Login</a></li>
+                                                <li><a href="@Url.Action("Index","Home")">Home</a></li>
+                                                <li><a href="@Url.Action("JobPost","Home")">Jobs</a></li>
+                                                @if (Session["username"] == null)
+                                                {
+                                                    <li><a href="@Url.Action("Login","Home")">Login</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="@Url.Action("Logout","Home")">Logout</a></li>
+                                                }
                                             </ul>
                                         </nav>
-                                    </div>
-                                    <!-- Header-btn -->
-                                    <div class="header-right-btn d-none d-lg-block ml-20">
-                                        <a href="contact.html" class="btn header-btn">Get A Qoue</a>
                                     </div>
                                 </div>
                             </div>

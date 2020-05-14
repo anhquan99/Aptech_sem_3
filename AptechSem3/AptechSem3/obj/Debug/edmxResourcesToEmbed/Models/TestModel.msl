@@ -20,11 +20,11 @@
           <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
           <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-          <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
           <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
           <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
           <ScalarProperty Name="CREATED" ColumnName="CREATED" />
           <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

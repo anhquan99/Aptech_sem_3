@@ -78,11 +78,12 @@ namespace AptechSem3.Service
                 throw;
             }
         }
-        public USR findByUsernameAndPassword(String username, String passsword)
+        public USR findByUsernameAndPassword(String username, String password)
         {
             try
             {
-                var selected = (from p in db.USRs where p.USERNAME == username && p.PASSWORD == passsword select p).SingleOrDefault();
+                var list = db.USRs.ToList();
+                var selected = (from p in db.USRs where p.USERNAME == username && p.PASSWORD == password select p).Single();
                 return selected;
             }
             catch (Exception)

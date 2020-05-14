@@ -144,15 +144,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\CustomRoleProvider.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ANSWER.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomJobPost.cs" />
     <Compile Include="Models\JOB_APPLICATION.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
@@ -452,13 +454,6 @@
     <Content Include="Content\CandidateWeb\assets\scss\_team.scss" />
     <Content Include="Content\CandidateWeb\assets\scss\_testimonial.scss" />
     <Content Include="Content\CandidateWeb\assets\scss\_variables.scss" />
-    <EntityDeploy Include="Models\TestModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\TestModel.edmx.diagram">
-      <DependentUpon>TestModel.edmx</DependentUpon>
-    </Content>
     <Content Include="credentials.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -523,6 +518,13 @@
     <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\TestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TestModel.edmx.diagram">
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -534,7 +536,9 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -546,12 +550,13 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\BlankLayout.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Apply\ApplyForId.cshtml" />
+    <Content Include="Views\Apply\ApplyForm.cshtml" />
+    <Content Include="Views\Apply\Apply.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\JobPost.cshtml" />
-    <Content Include="Views\Home\Apply.cshtml" />
-    <Content Include="Views\Home\Jobs.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Home\JobPostDetail.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>

@@ -23,7 +23,7 @@ namespace AptechSem3.Service
         {
             try
             {
-                List<JOB_POST> list = (from p in db.JOB_POST select p).ToList();
+                List<JOB_POST> list = (from p in db.JOB_POST where p.END_DATE > DateTime.Now select p).ToList();
                 return list;
             }
             catch (Exception)
@@ -41,6 +41,27 @@ namespace AptechSem3.Service
         public bool update(JOB_POST t)
         {
             throw new NotImplementedException();
+        }
+        public List<CustomJobPost> getAllAvalableJobToCreatePost()
+        {
+            try
+            {
+                using (db)
+                {
+                    var list = this.findAll();
+                    List<CustomJobPost> returnList = new List<CustomJobPost>();
+                    foreach(var i in list)
+                    {
+                        returnList.Add(new CustomJobPost(i));
+                    }
+                    return returnList;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

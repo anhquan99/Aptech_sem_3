@@ -24,11 +24,11 @@
           <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="PHOTO" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="EDUCATION" Type="text" Nullable="false" />
           <Property Name="WORK_EXP" Type="text" Nullable="false" />
           <Property Name="CREATED" Type="datetime" Nullable="false" />
           <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
+          <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="JOB_POST">
           <Key>
@@ -267,11 +267,11 @@
           <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PHOTO" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WORK_EXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="APPROVE_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="JOB_POST" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_APPLICATION" ToRole="JOB_POST" />
           <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_APPLICATION" FromRole="JOB_APPLICATION" ToRole="RESULT" />
           <NavigationProperty Name="USRs" Relationship="Self.USRS_JOB_APPLICATION" FromRole="JOB_APPLICATION" ToRole="USR" />
@@ -490,11 +490,11 @@
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
                 <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-                <ScalarProperty Name="PHOTO" ColumnName="PHOTO" />
                 <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
                 <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
                 <ScalarProperty Name="CREATED" ColumnName="CREATED" />
                 <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
