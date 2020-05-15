@@ -146,8 +146,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApplyController.cs" />
     <Compile Include="Controllers\CustomRoleProvider.cs" />
-    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -164,6 +164,7 @@
     <Compile Include="Models\QUESTION.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\QuestionAndAnswer.cs" />
     <Compile Include="Models\REPORT.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
@@ -551,13 +552,14 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\BlankLayout.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Apply\ApplyForId.cshtml" />
     <Content Include="Views\Apply\ApplyForm.cshtml" />
     <Content Include="Views\Apply\Apply.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\JobPost.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Test\DoTest.cshtml" />
+    <Content Include="Views\Test\Submit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
