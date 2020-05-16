@@ -92,5 +92,20 @@ namespace AptechSem3.Service
                 throw;
             }
         }
+        public int getApplyIdByUsername(String username)
+        {
+            try
+            {
+                int apply_id = (from p in db.USRs where p.USERNAME == "test-name" select p).SingleOrDefault().APPLY_ID ?? 0;
+                if (apply_id == 0) throw new Exception("CAN NOT FOUND USER APPLY_ID");
+                return apply_id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        
     }
 }

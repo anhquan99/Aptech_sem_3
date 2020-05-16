@@ -1,4 +1,5 @@
 ﻿using AptechSem3.Models;
+using AptechSem3.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Web.Mvc;
 
 namespace AptechSem3.Controllers
 {
+    //[Authorize(Roles ="CANDIDATE")]
     public class TestController : Controller
     {
         // GET: Test
@@ -16,23 +18,63 @@ namespace AptechSem3.Controllers
         }
         public ActionResult DoTest()
         {
-            List<QuestionAndAnswer> list = new List<QuestionAndAnswer>();
-            List<String> answ = new List<string>();
-            answ.Add("A 1");
-            list.Add(new QuestionAndAnswer(1, "Test Question 1", answ));
-            answ.Add("A 2");
-            list.Add(new QuestionAndAnswer(2, "Test Question 2", answ));
-            answ.Add("A 3");
-            list.Add(new QuestionAndAnswer(3, "Test Question 3", answ));
-            answ.Add("A 4");
-            list.Add(new QuestionAndAnswer(4, "Test Question 4", answ));
+
+
+
+            //get test index
+            UsrService usrService = new UsrService();
+            int apply_id = usrService.getApplyIdByUsername("test-name");
+            int index = TestService.getIndexByApplyId(apply_id);
+            //update test index
+            if (index == 0)
+            {
+                index++;
+                TestService.updateIndexByApplyId(apply_id, index);
+            }
+
+            //variable list to save question
+            List<TestQuestion> list = TestService.getQuestionByUsernameAndIndex("test-name", index);
+
+            //send quetion and answer to web page
             ViewBag.Question = list;
+
+            //send question id to late calculate result
+            String QuestionIdList = "";
+            foreach(var i in list)
+            {
+                //add question id to question id list
+                QuestionIdList += i.QuestionId  + " ";
+            }
+
+            //send question id list to web page
+            ViewBag.QuestionList = QuestionIdList;
             return View();
         }
         [HttpPost]
-        public ActionResult Submit(List<int> listInt)
+        public ActionResult Submit()
         {
-            Console.WriteLine(listInt + " " +  listString);
+            //get test index
+            UsrService usrService = new UsrService();
+            int apply_id = usrService.getApplyIdByUsername("test-name");
+            int index = TestService.getIndexByApplyId(apply_id);
+
+            //get question id list 
+            String result = Request.Params.Get("QuestionList").Trim();
+
+            //convert result to list of string to iterator
+            List<String> QuestionIds = result.Split(new char[] { ' ' }).ToList();
+            List<String> AnswerLists= new List<string>();
+            foreach(var i in QuestionIds)
+            {
+                AnswerLists.Add(Request.Params.Get("Q[" + i + "]"));
+            }
+
+            //calculate result score
+            TestService.calculateScore(QuestionIds, AnswerLists, apply_id, index);
+
+            //update index to 1
+            index++;
+            TestService.updateIndexByApplyId(apply_id, index);
             return View();
         }
     }

@@ -164,11 +164,13 @@
     <Compile Include="Models\QUESTION.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\QuestionAndAnswer.cs" />
     <Compile Include="Models\REPORT.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESULT.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TEST.cs">
@@ -189,6 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TestModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\TestQuestion.cs" />
     <Compile Include="Models\USR.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
@@ -199,6 +202,7 @@
     <Compile Include="Service\JobApplicationService.cs" />
     <Compile Include="Service\JobPostService.cs" />
     <Compile Include="Service\MailService.cs" />
+    <Compile Include="Service\TestService.cs" />
     <Compile Include="Service\UsrService.cs" />
     <Compile Include="Validate\CandidateValidation.cs" />
     <Compile Include="Validate\JobApplicationValidation.cs" />

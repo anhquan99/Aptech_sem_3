@@ -12,6 +12,9 @@ namespace AptechSem3.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class APTECH_SEM_3Entities : DbContext
     {
@@ -31,7 +34,17 @@ namespace AptechSem3.Models
         public DbSet<QUESTION> QUESTIONs { get; set; }
         public DbSet<REPORT> REPORTs { get; set; }
         public DbSet<RESULT> RESULTs { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TEST> TESTs { get; set; }
         public DbSet<USR> USRs { get; set; }
+    
+        public virtual ObjectResult<Nullable<int>> FIND_QID_FROM_USERNAME(string uSERNAME)
+        {
+            var uSERNAMEParameter = uSERNAME != null ?
+                new ObjectParameter("USERNAME", uSERNAME) :
+                new ObjectParameter("USERNAME", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("FIND_QID_FROM_USERNAME", uSERNAMEParameter);
+        }
     }
 }

@@ -20,11 +20,11 @@
     <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="WORK_EXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="APPROVE_STATUS" Type="Int32" Nullable="false" />
-    <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="JOB_POST" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_APPLICATION" ToRole="JOB_POST" />
     <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_APPLICATION" FromRole="JOB_APPLICATION" ToRole="RESULT" />
     <NavigationProperty Name="USRs" Relationship="Self.USRS_JOB_APPLICATION" FromRole="JOB_APPLICATION" ToRole="USR" />
@@ -80,6 +80,16 @@
     <Property Name="TEST_RESULT_3" Type="Double" Nullable="false" />
     <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.RESULT_APPLICATION" FromRole="RESULT" ToRole="JOB_APPLICATION" />
     <NavigationProperty Name="TEST" Relationship="Self.RESULT_TEST" FromRole="RESULT" ToRole="TEST" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TEST">
     <Key>
@@ -187,6 +197,7 @@
     <EntitySet Name="QUESTIONs" EntityType="Self.QUESTION" />
     <EntitySet Name="REPORTs" EntityType="Self.REPORT" />
     <EntitySet Name="RESULTs" EntityType="Self.RESULT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TESTs" EntityType="Self.TEST" />
     <EntitySet Name="USRs" EntityType="Self.USR" />
     <AssociationSet Name="ANSWER_QUESTION" Association="Self.ANSWER_QUESTION">
@@ -217,5 +228,8 @@
       <End Role="QUESTION" EntitySet="QUESTIONs" />
       <End Role="TEST" EntitySet="TESTs" />
     </AssociationSet>
+    <FunctionImport Name="FIND_QID_FROM_USERNAME" ReturnType="Collection(Int32)">
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
 </Schema>
