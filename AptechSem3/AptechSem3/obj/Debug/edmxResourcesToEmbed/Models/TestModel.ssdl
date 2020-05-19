@@ -19,11 +19,11 @@
     <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="EDUCATION" Type="text" Nullable="false" />
     <Property Name="WORK_EXP" Type="text" Nullable="false" />
     <Property Name="CREATED" Type="datetime" Nullable="false" />
     <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
-    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
   </EntityType>
   <EntityType Name="JOB_POST">
     <Key>
@@ -196,6 +196,10 @@
   </Association>
   <Function Name="FIND_QID_FROM_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="FIND_USR_BY_TEST_END" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TIME1" Type="datetime" Mode="In" />
+    <Parameter Name="TIME2" Type="datetime" Mode="In" />
   </Function>
   <EntityContainer Name="APTECH_SEM_3ModelStoreContainer">
     <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="dbo" store:Type="Tables" />

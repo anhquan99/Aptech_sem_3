@@ -45,5 +45,18 @@ namespace AptechSem3.Models
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("FIND_QID_FROM_USERNAME", uSERNAMEParameter);
         }
+    
+        public virtual ObjectResult<FIND_USR_BY_TEST_END_Result> FIND_USR_BY_TEST_END(Nullable<System.DateTime> tIME1, Nullable<System.DateTime> tIME2)
+        {
+            var tIME1Parameter = tIME1.HasValue ?
+                new ObjectParameter("TIME1", tIME1) :
+                new ObjectParameter("TIME1", typeof(System.DateTime));
+    
+            var tIME2Parameter = tIME2.HasValue ?
+                new ObjectParameter("TIME2", tIME2) :
+                new ObjectParameter("TIME2", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FIND_USR_BY_TEST_END_Result>("FIND_USR_BY_TEST_END", tIME1Parameter, tIME2Parameter);
+        }
     }
 }

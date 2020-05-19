@@ -24,11 +24,11 @@
           <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="EDUCATION" Type="text" Nullable="false" />
           <Property Name="WORK_EXP" Type="text" Nullable="false" />
           <Property Name="CREATED" Type="datetime" Nullable="false" />
           <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
-          <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="JOB_POST">
           <Key>
@@ -201,6 +201,10 @@
         </Association>
         <Function Name="FIND_QID_FROM_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="FIND_USR_BY_TEST_END" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TIME1" Type="datetime" Mode="In" />
+          <Parameter Name="TIME2" Type="datetime" Mode="In" />
         </Function>
         <EntityContainer Name="APTECH_SEM_3ModelStoreContainer">
           <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="dbo" store:Type="Tables" />
@@ -467,9 +471,19 @@
             <End Role="TEST" EntitySet="TESTs" />
           </AssociationSet>
           <FunctionImport Name="FIND_QID_FROM_USERNAME" ReturnType="Collection(Int32)">
-            <Parameter Name="USERNAME" Mode="In" Type="String" />
+          <Parameter Name="USERNAME" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="FIND_USR_BY_TEST_END" ReturnType="Collection(APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result)">
+            <Parameter Name="TIME1" Mode="In" Type="DateTime" />
+            <Parameter Name="TIME2" Mode="In" Type="DateTime" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="FIND_USR_BY_TEST_END_Result">
+          <Property Type="Int32" Name="APPLY_ID" Nullable="true" />
+          <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="100" />
+          <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -582,6 +596,16 @@
             </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="FIND_QID_FROM_USERNAME" FunctionName="APTECH_SEM_3Model.Store.FIND_QID_FROM_USERNAME" />
+          <FunctionImportMapping FunctionImportName="FIND_USR_BY_TEST_END" FunctionName="APTECH_SEM_3Model.Store.FIND_USR_BY_TEST_END">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result">
+                <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

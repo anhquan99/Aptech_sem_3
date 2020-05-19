@@ -107,5 +107,15 @@
       </EndProperty>
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="FIND_QID_FROM_USERNAME" FunctionName="APTECH_SEM_3Model.Store.FIND_QID_FROM_USERNAME" />
+    <FunctionImportMapping FunctionImportName="FIND_USR_BY_TEST_END" FunctionName="APTECH_SEM_3Model.Store.FIND_USR_BY_TEST_END">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result">
+          <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+          <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+          <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+          <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

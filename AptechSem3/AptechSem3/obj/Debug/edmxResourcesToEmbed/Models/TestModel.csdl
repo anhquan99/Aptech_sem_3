@@ -220,5 +220,15 @@
     <FunctionImport Name="FIND_QID_FROM_USERNAME" ReturnType="Collection(Int32)">
       <Parameter Name="USERNAME" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="FIND_USR_BY_TEST_END" ReturnType="Collection(APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result)">
+      <Parameter Name="TIME1" Mode="In" Type="DateTime" />
+      <Parameter Name="TIME2" Mode="In" Type="DateTime" />
+    </FunctionImport>
   </EntityContainer>
+  <ComplexType Name="FIND_USR_BY_TEST_END_Result">
+    <Property Type="Int32" Name="APPLY_ID" Nullable="true" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+  </ComplexType>
 </Schema>

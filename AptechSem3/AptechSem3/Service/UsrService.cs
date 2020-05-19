@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 
 namespace AptechSem3.Service
@@ -99,6 +100,35 @@ namespace AptechSem3.Service
                 int apply_id = (from p in db.USRs where p.USERNAME == "test-name" select p).SingleOrDefault().APPLY_ID ?? 0;
                 if (apply_id == 0) throw new Exception("CAN NOT FOUND USER APPLY_ID");
                 return apply_id;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        //background service to delete all user is finished test
+        public static void deletebackgroundUsrNotAvailable()
+        {
+            try
+            {
+                while (true)
+                {
+                    using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                    {
+                        DateTime t1 = DateTime.Now;
+                        DateTime t2 = t1.AddMinutes(-1);
+                        var list = db.FIND_USR_BY_TEST_END(t1, t2);
+                        foreach (var i in list)
+                        {
+                            var temp = (from p in db.USRs where p.USERNAME == i.USERNAME select p).SingleOrDefault();
+                            db.USRs.Remove(temp);
+                        }
+                        if (db.SaveChanges() == 0) throw new Exception("CAN NOT DELETE USR");
+                    }
+                    //sleep for 1 minute
+                    Thread.Sleep(60000);
+                }
             }
             catch (Exception)
             {

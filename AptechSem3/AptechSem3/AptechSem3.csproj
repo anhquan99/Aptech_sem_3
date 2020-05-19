@@ -145,6 +145,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ApplyController.cs" />
+    <Compile Include="Controllers\bgController.cs" />
     <Compile Include="Controllers\CustomRoleProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -155,6 +156,9 @@
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomJobPost.cs" />
+    <Compile Include="Models\FIND_USR_BY_TEST_END_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\JOB_APPLICATION.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
@@ -562,6 +566,7 @@
     <Content Include="Views\Test\DoTest.cshtml" />
     <Content Include="Views\Test\Submit.cshtml" />
     <Content Include="Views\Test\finished.cshtml" />
+    <Content Include="Views\bg\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
