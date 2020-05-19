@@ -13,14 +13,48 @@
         margin-bottom: 2%;
     }
 </style>
+<script>
+// Set the date we're counting down to
+var distance = @ViewBag.TimeLeft;
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Find the distance between now and the count down date
+    distance = distance - 1;
+    var left = distance;
+    // Time calculations for days, hours, minutes and seconds
+    var hours = Math.floor((left / (3600)));
+    left = left - hours*3600;
+    var minutes = Math.floor((left / 60));
+    left = left - minutes * 60;
+    var seconds = Math.floor((left));
+    
+    // Output the result in an element with id="timeSpan"
+    document.getElementById("timeSpan").innerHTML = "<span style='color:red'>Time left: </span>" + hours + " hours "
+      + minutes + " minutes " + seconds + " seconds ";
+
+  // If the count down is over, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("testForm").submit();
+  }
+}, 1000);
+</script>
+
 <div class="container" style="margin-top:5%; margin-bottom:5%;min-height: 668px;">
-    <form method="post" action="@Url.Action("Submit", "Test")">
+    <div class="row" style="text-align:center">
+        <h3 style="color:#f15f22;font-size:30px;width: 100%;">WEBSTER ORGANISATION</h3>
+    </div>
+    <div class="row">
+        <p id="timeSpan"></p>
+    </div>
+    <form method="post" action="@Url.Action("Submit", "Test")" id="testForm">
         <input type="hidden" name="QuestionList" value="@ViewBag.QuestionList"/>
         @foreach (var i in ViewBag.Question)
         {
             <div class="row ">
                 <div class="col-sm-12 testTile">
-                    @i.Question
+                    <span style="color:red">Question: </span>@i.Question
                 </div>
             </div>
             <div class="row justify-content-center">
@@ -31,8 +65,8 @@
             foreach (var p in i.Answer)
             {
                 <div class="row testContent">
-                    <div class="col-sm-6">
-                       <input type="radio" name="Q[@i.QuestionId]" value="@p" /><label>@p</label>
+                    <div class="col-sm-12">
+                        <span style="word-break: break-all;display:block"><input type="radio" name="Q[@i.QuestionId]" value="@p" /> &nbsp; @p</span>
                     </div>
                 </div>
 
@@ -43,11 +77,11 @@
                 </div>
             </div>
         }
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <input type="submit" value="Submit"/>
+            <div class="row justify-content-center" style="margin-right:0px;margin-left:0px; margin-top:10px">
+                <div class="col-md-6">
+                    <input class="btn btn-primary" type="submit" style="width:100%" value="Submit" />
+                </div>
             </div>
-        </div>
     </form>
 </div>
 

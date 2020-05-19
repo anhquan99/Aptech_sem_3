@@ -26,11 +26,11 @@ namespace AptechSem3.Models
         public string NAME { get; set; }
         public string ADDRESS { get; set; }
         public string PHONE { get; set; }
-        public string MAIL { get; set; }
         public string EDUCATION { get; set; }
         public string WORK_EXP { get; set; }
         public System.DateTime CREATED { get; set; }
         public int APPROVE_STATUS { get; set; }
+        public string MAIL { get; set; }
     
         public virtual JOB_POST JOB_POST { get; set; }
         public virtual ICollection<RESULT> RESULTs { get; set; }

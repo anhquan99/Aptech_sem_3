@@ -19,11 +19,11 @@
     <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="EDUCATION" Type="text" Nullable="false" />
     <Property Name="WORK_EXP" Type="text" Nullable="false" />
     <Property Name="CREATED" Type="datetime" Nullable="false" />
     <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
+    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
   </EntityType>
   <EntityType Name="JOB_POST">
     <Key>
@@ -70,16 +70,6 @@
     <Property Name="TEST_RESULT_1" Type="float" Nullable="false" />
     <Property Name="TEST_RESULT_2" Type="float" Nullable="false" />
     <Property Name="TEST_RESULT_3" Type="float" Nullable="false" />
-  </EntityType>
-  <EntityType Name="sysdiagrams">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="principal_id" Type="int" Nullable="false" />
-    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="version" Type="int" />
-    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="TEST">
     <Key>
@@ -214,7 +204,6 @@
     <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="REPORT" EntityType="Self.REPORT" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RESULT" EntityType="Self.RESULT" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TEST" EntityType="Self.TEST" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TEST_QUESTION" EntityType="Self.TEST_QUESTION" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="USR" EntityType="Self.USR" Schema="dbo" store:Type="Tables" />

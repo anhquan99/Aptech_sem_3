@@ -89,7 +89,7 @@ namespace AptechSem3.Service
             catch (Exception)
             {
 
-                throw;
+                return null;
             }
         }
         public int getApplyIdByUsername(String username)

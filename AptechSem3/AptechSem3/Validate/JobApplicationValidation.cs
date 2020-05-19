@@ -10,16 +10,11 @@ namespace AptechSem3.Validate
     {
         public static bool Validate(JOB_APPLICATION application)
         {
-            try
-            {
-                //code here
-                return true;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
+            if (!TextValidation.validateStringNumber(application.PERSONAL_ID)) return false;
+            if (!TextValidation.validateStringNumber(application.PHONE)) return false;
+            if (!TextValidation.validateStringDigit(application.NAME)) return false;
+            if (!TextValidation.validateEmail(application.MAIL)) return false;
+            return true;
         }
     }
 }

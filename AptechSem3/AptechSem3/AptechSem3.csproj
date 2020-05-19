@@ -170,9 +170,6 @@
     <Compile Include="Models\RESULT.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
-      <DependentUpon>TestModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\TEST.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
@@ -204,8 +201,8 @@
     <Compile Include="Service\MailService.cs" />
     <Compile Include="Service\TestService.cs" />
     <Compile Include="Service\UsrService.cs" />
-    <Compile Include="Validate\CandidateValidation.cs" />
     <Compile Include="Validate\JobApplicationValidation.cs" />
+    <Compile Include="Validate\TextValidation.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -564,6 +561,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Test\DoTest.cshtml" />
     <Content Include="Views\Test\Submit.cshtml" />
+    <Content Include="Views\Test\finished.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

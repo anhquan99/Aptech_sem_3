@@ -20,11 +20,11 @@
           <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
           <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
           <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
           <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
           <ScalarProperty Name="CREATED" ColumnName="CREATED" />
           <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -74,17 +74,6 @@
           <ScalarProperty Name="TEST_RESULT_1" ColumnName="TEST_RESULT_1" />
           <ScalarProperty Name="TEST_RESULT_2" ColumnName="TEST_RESULT_2" />
           <ScalarProperty Name="TEST_RESULT_3" ColumnName="TEST_RESULT_3" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="APTECH_SEM_3Model.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

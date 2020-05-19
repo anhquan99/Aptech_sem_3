@@ -1,7 +1,51 @@
-﻿    
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    .formBody {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        min-height: 649px;
+    }
 
-@ViewBag.Message
+    .colorFront {
+        color: #ff5f13
+    }
+</style>
+<div class="formBody">
+    <div class="row justify-content-center" style="margin-right:0px;margin-left:0px;">
+        <div class="card col-sm-6" style="width: 100%; padding:0">
+            <div class="card-header" style="width:100%;background:#212529;color:white">
+                @ViewBag.Test.TEST_NAME
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="colorFront">Start time:</span> @ViewBag.Test.START_TIME</li>
+                <li class="list-group-item"><span class="colorFront">End time:</span> @ViewBag.Test.END_TIME</li>
+                <li class="list-group-item"><span class="colorFront">Time:</span> @ViewBag.TimeLeft</li>
+            </ul>
+            <div class="card-header" style="width:100%;background:#212529;color:white">
+                Candidate
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="colorFront">ID:</span> @ViewBag.Application.PERSONAL_ID</li>
+                <li class="list-group-item"><span class="colorFront">Name:</span> @ViewBag.Application.NAME</li>
+                <li class="list-group-item"><span class="colorFront">Phone: </span>@ViewBag.Application.PHONE</li>
+                <li class="list-group-item"><span class="colorFront">Mail: </span>@ViewBag.Application.MAIL</li>
+            </ul>
+            <div class="card-header" style="width:100%;background:#f1f1f1;color:white">
+                <span style="color:red">Warning: This test will be divided to 3 part. Candidate submit test in the submit button to finish each part. There will be no backward to finished part so do it carefully!<br />
+                When the start time is up candidate can refresh this page to get button command examine below.</span>
+            </div>
+        </div>
+    </div>
+
+    @if (ViewBag.link == "true")
+    {
+    <div class="row justify-content-center" style="margin-right:0px;margin-left:0px; margin-top:10px">
+        <a href="@Url.Action("DoTest", "Test")" style="width:50%" class="btn btn-primary">COMMAND EXAMINE</a>
+    </div>
+    }
+</div>
+ 

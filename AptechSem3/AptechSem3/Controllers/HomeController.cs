@@ -17,6 +17,8 @@ namespace AptechSem3.Controllers
         }
         public ActionResult JobPost()
         {
+            JobPostService service = new JobPostService();
+            ViewBag.List = service.findAll();
             return View();
         }
         

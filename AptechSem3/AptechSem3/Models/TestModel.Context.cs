@@ -34,7 +34,6 @@ namespace AptechSem3.Models
         public DbSet<QUESTION> QUESTIONs { get; set; }
         public DbSet<REPORT> REPORTs { get; set; }
         public DbSet<RESULT> RESULTs { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TEST> TESTs { get; set; }
         public DbSet<USR> USRs { get; set; }
     

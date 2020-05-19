@@ -43,32 +43,63 @@
                         <div class="row ">
                             <input type="hidden" name="PERSONAL_ID" value="@ViewBag.person_id" />
                             <input type="hidden" name="PHONE" value="@ViewBag.phone" />
-                            <input type="hidden" name="POST_ID" value="@ViewBag.postId"/>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-form">
-                                    <input type="text" placeholder="Name" name="NAME">
+                            <input type="hidden" name="POST_ID" value="@ViewBag.postId" />
+                            @if (ViewBag.application != null)
+                            {
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Name" name="NAME" value="@ViewBag.application.NAME" required="true">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="input-form">
-                                    <input type="text" placeholder="Email" name="MAIL">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Email" name="MAIL" value="@ViewBag.application.MAIL" required="true">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="input-form">
-                                    <input type="text" placeholder="Address" name="ADDRESS">
+                                <div class="col-lg-12">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Address" name="ADDRESS" value="@ViewBag.application.ADDRESS" required="true">
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12">
-                                <div class="input-form textAreaWraper">
-                                    <textarea class="textAreaStyle" placeholder="Education" name="EDUCATION"></textarea>
+                                <div class="col-lg-12">
+                                    <div class="input-form textAreaWraper">
+                                        <textarea class="textAreaStyle" placeholder="Education" name="EDUCATION" required="true">@ViewBag.application.EDUCATION</textarea>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 ">
-                                <div class="input-form  textAreaWraper">
-                                    <textarea class="textAreaStyle" type="text" placeholder="Work experience" name="WORK_EXP"></textarea>
+                                <div class="col-lg-12 ">
+                                    <div class="input-form  textAreaWraper">
+                                        <textarea class="textAreaStyle" type="text" placeholder="Work experience" name="WORK_EXP" required="true">@ViewBag.application.WORK_EXP</textarea>
+                                    </div>
                                 </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Name" name="NAME" required="true" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Email" name="MAIL" required="true" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="input-form">
+                                        <input type="text" placeholder="Address" name="ADDRESS" required="true" >
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="input-form textAreaWraper">
+                                        <textarea class="textAreaStyle" placeholder="Education" name="EDUCATION" required="true"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 ">
+                                    <div class="input-form  textAreaWraper">
+                                        <textarea class="textAreaStyle" type="text" placeholder="Work experience" name="WORK_EXP" required="true"></textarea>
+                                    </div>
+                                </div>
+                            }
                             <!-- Button -->
                             <div class="col-lg-12">
                                 <button name="submit" class="submit-btn">APPLY</button>

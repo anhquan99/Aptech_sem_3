@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="APTECH_SEM_3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="APTECH_SEM_3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ANSWER">
           <Key>
             <PropertyRef Name="ANSWER_ID" />
@@ -24,11 +24,11 @@
           <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="EDUCATION" Type="text" Nullable="false" />
           <Property Name="WORK_EXP" Type="text" Nullable="false" />
           <Property Name="CREATED" Type="datetime" Nullable="false" />
           <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
+          <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
         </EntityType>
         <EntityType Name="JOB_POST">
           <Key>
@@ -75,16 +75,6 @@
           <Property Name="TEST_RESULT_1" Type="float" Nullable="false" />
           <Property Name="TEST_RESULT_2" Type="float" Nullable="false" />
           <Property Name="TEST_RESULT_3" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="TEST">
           <Key>
@@ -219,7 +209,6 @@
           <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="REPORT" EntityType="Self.REPORT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RESULT" EntityType="Self.RESULT" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEST" EntityType="Self.TEST" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TEST_QUESTION" EntityType="Self.TEST_QUESTION" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="USR" EntityType="Self.USR" Schema="dbo" store:Type="Tables" />
@@ -256,8 +245,7 @@
             <End Role="USR" EntitySet="USR" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="APTECH_SEM_3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -281,11 +269,11 @@
           <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="WORK_EXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="APPROVE_STATUS" Type="Int32" Nullable="false" />
+          <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="JOB_POST" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_APPLICATION" ToRole="JOB_POST" />
           <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_APPLICATION" FromRole="JOB_APPLICATION" ToRole="RESULT" />
           <NavigationProperty Name="USRs" Relationship="Self.USRS_JOB_APPLICATION" FromRole="JOB_APPLICATION" ToRole="USR" />
@@ -341,16 +329,6 @@
           <Property Name="TEST_RESULT_3" Type="Double" Nullable="false" />
           <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.RESULT_APPLICATION" FromRole="RESULT" ToRole="JOB_APPLICATION" />
           <NavigationProperty Name="TEST" Relationship="Self.RESULT_TEST" FromRole="RESULT" ToRole="TEST" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="principal_id" Type="Int32" Nullable="false" />
-          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="Int32" />
-          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="TEST">
           <Key>
@@ -458,7 +436,6 @@
           <EntitySet Name="QUESTIONs" EntityType="Self.QUESTION" />
           <EntitySet Name="REPORTs" EntityType="Self.REPORT" />
           <EntitySet Name="RESULTs" EntityType="Self.RESULT" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="TESTs" EntityType="Self.TEST" />
           <EntitySet Name="USRs" EntityType="Self.USR" />
           <AssociationSet Name="ANSWER_QUESTION" Association="Self.ANSWER_QUESTION">
@@ -518,11 +495,11 @@
                 <ScalarProperty Name="NAME" ColumnName="NAME" />
                 <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
                 <ScalarProperty Name="PHONE" ColumnName="PHONE" />
-                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
                 <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
                 <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
                 <ScalarProperty Name="CREATED" ColumnName="CREATED" />
                 <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+                <ScalarProperty Name="MAIL" ColumnName="MAIL" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -572,17 +549,6 @@
                 <ScalarProperty Name="TEST_RESULT_1" ColumnName="TEST_RESULT_1" />
                 <ScalarProperty Name="TEST_RESULT_2" ColumnName="TEST_RESULT_2" />
                 <ScalarProperty Name="TEST_RESULT_3" ColumnName="TEST_RESULT_3" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="APTECH_SEM_3Model.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

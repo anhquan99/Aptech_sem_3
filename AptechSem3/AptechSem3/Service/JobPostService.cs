@@ -23,7 +23,7 @@ namespace AptechSem3.Service
         {
             try
             {
-                List<JOB_POST> list = (from p in db.JOB_POST where p.END_DATE > DateTime.Now select p).ToList();
+                List<JOB_POST> list = (from p in db.JOB_POST where DateTime.Compare(DateTime.Now, p.END_DATE) < 0 select p).ToList();
                 return list;
             }
             catch (Exception)

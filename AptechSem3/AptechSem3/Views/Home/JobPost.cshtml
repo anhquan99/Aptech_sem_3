@@ -3,7 +3,7 @@
     ViewBag.Title = "JobPost";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+@*<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">*@
 <style>
     .formBody {
         margin-top: 5%;
@@ -12,13 +12,16 @@
     }
 </style>
 <div class="formBody">
-    <div class="row justify-content-center" style="margin-right:0px;margin-left:0px;">
-        <div class="card col-sm-6" style="width: 18rem;">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    @foreach (var i in ViewBag.List)
+    {
+        <div class="row justify-content-center" style="margin-right:0px;margin-left:0px;">
+            <div class="card col-sm-6" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">@Html.Raw(i.POST)</p>
+                    <a class="btn btn-primary" href="@Url.Action("ApplyForId","Apply", new { id = @i.POST_ID})" style="width:100%">Apply</a>
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>

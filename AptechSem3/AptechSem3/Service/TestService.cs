@@ -47,6 +47,7 @@ namespace AptechSem3.Service
                     if (QuestionID == 0) continue;
                     returnList.Add(new TestQuestion(QuestionID));
                 }
+                
                 return returnList;
             }
             catch (Exception)
@@ -115,6 +116,57 @@ namespace AptechSem3.Service
                     }
                 }
                 if(db.SaveChanges() == 0 && flag == true) throw new Exception("CAN NOT UPDATE RESULT");
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static DateTime getStartTimeByApplyId(int apply_id)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var jobPost = ((from p in db.JOB_APPLICATION where p.APPLY_ID == apply_id select p).SingleOrDefault()).JOB_POST;
+                    var Test = (from p in db.TESTs where p.POST_ID == jobPost.POST_ID select p).SingleOrDefault();
+                    return Test.START_TIME;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static DateTime getEndTimeByApplyId(int apply_id)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var jobPost = ((from p in db.JOB_APPLICATION where p.APPLY_ID == apply_id select p).SingleOrDefault()).JOB_POST;
+                    var Test = (from p in db.TESTs where p.POST_ID == jobPost.POST_ID select p).SingleOrDefault();
+                    return Test.END_TIME;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public static TEST getTestByApplyId(int apply_id)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var jobPost = ((from p in db.JOB_APPLICATION where p.APPLY_ID == apply_id select p).SingleOrDefault()).JOB_POST;
+                    var Test = (from p in db.TESTs where p.POST_ID == jobPost.POST_ID select p).SingleOrDefault();
+                    return Test;
+                }
             }
             catch (Exception)
             {
