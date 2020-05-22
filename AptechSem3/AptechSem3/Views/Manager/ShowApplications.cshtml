@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewBag.Title = "Show Applications";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Applications</h3>
+                        <br />
+                        <lable class="col-sm-12 text-danger">
+                            @ViewBag.Error
+
+                        </lable>
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Post Id</th>
+                                    <th>Personal Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Approve</th>
+                                    <th>Unapprove</th>
+                                    <th>More Detail</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ApplicationList != null)
+                                {
+                                    foreach (var application in ViewBag.ApplicationList)
+                                    {
+                                        string status;
+                                        switch (application.APPROVE_STATUS)
+                                        {
+                                            case -1:
+                                                status = "Unapproved";
+                                                break;
+                                            case 1:
+                                                status = "Approved";
+                                                break;
+                                            default:
+                                                status = "Unseen";
+                                                break;
+                                        }
+                                <tr>
+                                    <td>@application.POST_ID</td>
+                                    <td>@application.PERSONAL_ID</td>
+                                    <td>@application.NAME</td>
+                                    <td>@application.ADDRESS</td>
+                                    <td>@application.PHONE</td>
+                                    <td>@application.CREATED</td>
+                                    <td>@status</td>
+
+                                    <td><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = 1})">Approve</a></td>
+                                    <td><a href="@Url.Action("ApproveApplication", "Manager", new { applyId = application.APPLY_ID, status = -1 })">Unapprove</a></td>
+                                    <td><a href="@Url.Action("ApplicationDetail", "Manager", new { applyId = application.APPLY_ID})">More Detail</a></td>
+
+
+                                </tr>
+                                    }
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

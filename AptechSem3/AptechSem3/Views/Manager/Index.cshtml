@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Home Manager";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Reports</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Created</th>
+                                        <th>High Score Test</th>
+                                        <th>Average Score Test</th>
+                                        <th>Test Attempt</th>
+                                        <th>General Knowledge High Score</th>
+                                        <th>Mathematics High Score</th>
+                                        <th>Computer Technology High Score</th>
+                                        <th>Detail</th>
+                                        <th>Update</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.ReportList != null)
+                                    {
+                                        foreach (var report in ViewBag.ReportList)
+                                        {
+
+                                    <tr>
+                                        <td>@report.CREATED</td>
+                                        <td>@report.PERCENT_HIGH_SCORE %</td>
+                                        <td>@report.PERCENT_MIDDLE_SCORE %</td>
+                                        <td>@report.PERCENT_ATTEMPT %</td>
+                                        <td>@report.PERCENT_HIGH_PART_1 %</td>
+                                        <td>@report.PERCENT_HIGH_PART_2 %</td>
+                                        <td>@report.PERCENT_HIGH_PART_3 %</td>
+                                        <td><a href="@Url.Action("ReportDetail","Manager", new { created = report.CREATED})">Detail</a></td>
+                                        <td><a href="@Url.Action("UpdateReport","Manager", new { created = report.CREATED})">Update</a></td>
+
+                                    </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+

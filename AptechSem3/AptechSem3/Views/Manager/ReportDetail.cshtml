@@ -1,0 +1,130 @@
+﻿
+@{
+    ViewBag.Title = "Report Detail";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+    AptechSem3.Models.REPORT report = null;
+
+    if (TempData["Report"] != null)
+    {
+        report = (AptechSem3.Models.REPORT)TempData["Report"];
+    }
+}
+<style>
+    /* Chart.js */
+
+</style>
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-info">
+                        <div class="inner">
+                            <h3>@report.PERCENT_ATTEMPT</h3>
+
+                            <p>Candidates attended the Test</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-success">
+                        <div class="inner">
+                            <h3>@report.PERCENT_HIGH_SCORE.ToString("0.00")<sup style="font-size: 20px">%</sup></h3>
+
+                            <p>>Candidates passsed with 80% Score</p>
+                        </div>
+                        <div class="icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-warning">
+                        <div class="inner">
+                            <h3>@report.PERCENT_MIDDLE_SCORE.ToString("0.00")<sup style="font-size: 20px">%</sup></h3>
+
+                            <p>Candidates pass with 50% Score</p>
+                        </div>
+                        <div class="icon">
+                            <i class="far fa-thumbs-up"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-3 col-6">
+                    <!-- small box -->
+                    <div class="small-box bg-danger">
+                        <div class="inner">
+                            <h3>@((100 - report.PERCENT_HIGH_SCORE - report.PERCENT_MIDDLE_SCORE).ToString("0.00"))<sup style="font-size: 20px">%</sup></h3>
+
+                            <p>Candidates failed with < 50% Score</p>
+                        </div>
+                        <div class="icon">
+                            <i class="far fa-thumbs-down"></i>
+                        </div>
+                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-lg-6">
+                    <canvas id="pie-chart" width="800" height="450"></canvas>
+                </div>
+                <div class="col-lg-6">
+                    <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+ <script>
+     new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: [">80% Test", "50-80% Test", "<50% Test"],
+      datasets: [{
+        label: "Score (percent)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+        data: [@report.PERCENT_HIGH_SCORE.ToString("0.00"),@report.PERCENT_MIDDLE_SCORE.ToString("0.00"),@((100-report.PERCENT_HIGH_SCORE-report.PERCENT_MIDDLE_SCORE).ToString("0.00"))]
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: '@report.CREATED Test Report'
+      }
+    }
+     });
+
+     new Chart(document.getElementById("bar-chart-horizontal"), {
+    type: 'horizontalBar',
+    data: {
+      labels: ["GENERAL KNOWLEDGE","GENERAL KNOWLEDGE HIGH", "MATHEMATICS","MATHEMATICS HIGH", "COMPUTER TECHNOLOGY", "COMPUTER TECHNOLOGY HIGH"],
+      datasets: [
+        {
+          label: "Test Report (percent)",
+          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#d75329"],
+          data: [@report.PERCENT_HIGH_PART_1.ToString("0.00"),@report.PERCENT_MID_PART_1.ToString("0.00"),@report.PERCENT_HIGH_PART_2.ToString("0.00"),@report.PERCENT_MID_PART_2.ToString("0.00"),@report.PERCENT_HIGH_PART_3.ToString("0.00"), @report.PERCENT_MID_PART_3.ToString("0.00")]
+        }
+      ]
+    },
+    options: {
+      legend: { display: false },
+      title: {
+        display: true,
+        text: '@report.CREATED Test Report'
+      }
+    }
+});
+ </script>
+

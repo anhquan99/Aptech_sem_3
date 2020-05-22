@@ -148,6 +148,7 @@
     <Compile Include="Controllers\bgController.cs" />
     <Compile Include="Controllers\CustomRoleProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -156,7 +157,22 @@
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CustomJobPost.cs" />
+    <Compile Include="Models\FIND_QUESTION_WITH_TEST_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FIND_USR_BY_TEST_END_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_1_RANDOM_QUESTION_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_2_RANDOM_QUESTIONS_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LAST_QUESTION_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LAST_TEST_Result.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JOB_APPLICATION.cs">
@@ -172,6 +188,9 @@
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RESULT.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TEST.cs">
@@ -203,6 +222,15 @@
     <Compile Include="Service\JobApplicationService.cs" />
     <Compile Include="Service\JobPostService.cs" />
     <Compile Include="Service\MailService.cs" />
+    <Compile Include="Service\ModelService\AnswerService.cs" />
+    <Compile Include="Service\ModelService\ApplicationService.cs" />
+    <Compile Include="Service\ModelService\IService.cs" />
+    <Compile Include="Service\ModelService\PostService.cs" />
+    <Compile Include="Service\ModelService\QuestionService.cs" />
+    <Compile Include="Service\ModelService\ReportService.cs" />
+    <Compile Include="Service\ModelService\ResultService.cs" />
+    <Compile Include="Service\ModelService\TestService.cs" />
+    <Compile Include="Service\ModelService\UserService.cs" />
     <Compile Include="Service\TestService.cs" />
     <Compile Include="Service\UsrService.cs" />
     <Compile Include="Validate\JobApplicationValidation.cs" />
@@ -400,6 +428,20 @@
     <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.js" />
     <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.min.css" />
     <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.min.js" />
+    <Content Include="Content\css\adminlte.min.css" />
+    <Content Include="Content\css\all.css" />
+    <Content Include="Content\css\all.min.css" />
+    <Content Include="Content\css\Chart.css" />
+    <Content Include="Content\css\Chart.min.css" />
+    <Content Include="Content\css\daterangepicker.css" />
+    <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\img\AdminLTELogo.png" />
+    <Content Include="Content\img\user2-160x160.jpg" />
+    <Content Include="Content\js\adminlte.js" />
+    <Content Include="Content\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\js\daterangepicker.js" />
+    <Content Include="Content\js\jquery.inputmask.bundle.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -567,6 +609,24 @@
     <Content Include="Views\Test\Submit.cshtml" />
     <Content Include="Views\Test\finished.cshtml" />
     <Content Include="Views\bg\Index.cshtml" />
+    <Content Include="Views\Shared\ManagerLayout.cshtml" />
+    <Content Include="Views\Manager\ApplicationDetail.cshtml" />
+    <Content Include="Views\Manager\CreatePost.cshtml" />
+    <Content Include="Views\Manager\CreateQA.cshtml" />
+    <Content Include="Views\Manager\CreateTest.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\ReportDetail.cshtml" />
+    <Content Include="Views\Manager\ShowAnswers.cshtml" />
+    <Content Include="Views\Manager\ShowApplications.cshtml" />
+    <Content Include="Views\Manager\ShowCandidates.cshtml" />
+    <Content Include="Views\Manager\ShowPosts.cshtml" />
+    <Content Include="Views\Manager\ShowQuestions.cshtml" />
+    <Content Include="Views\Manager\ShowTestQuestions.cshtml" />
+    <Content Include="Views\Manager\ShowTests.cshtml" />
+    <Content Include="Views\Manager\UpdateAnswer.cshtml" />
+    <Content Include="Views\Manager\UpdatePost.cshtml" />
+    <Content Include="Views\Manager\UpdateQuestion.cshtml" />
+    <Content Include="Views\Manager\UpdateTest.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

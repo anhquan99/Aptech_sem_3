@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Show Posts";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Posts</h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Post Id</th>
+                                    <th>Title</th>
+                                    <th>Created</th>
+                                    <th>End Date</th>
+                                    <th>Post</th>
+                                    <th>Update</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.PostList != null)
+                                {
+                                    foreach (var post in ViewBag.PostList)
+                                    {
+
+                                <tr>
+                                    <td>@post.POST_ID</td>
+                                    <td>@post.TITLE</td>
+                                    <td>@post.CREATED</td>
+                                    <td>@post.END_DATE</td>
+                                    <td>@post.POST</td>
+                                    <td><a href="@Url.Action("UpdatePost","Manager", new { postId = post.POST_ID})">Update</a></td>
+
+
+
+
+                                </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+

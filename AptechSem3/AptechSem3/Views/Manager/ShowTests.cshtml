@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "Show Tests";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Tests</h3>
+
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Post Id</th>
+                                        <th>Test Name</th>
+                                        <th>Start Time</th>
+                                        <th>End Time</th>
+                                        <th>Update</th>
+                                        <th>Generate Questions</th>
+                                        <th>Questions</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.TestList != null)
+                                    {
+                                        foreach (var test in ViewBag.TestList)
+                                        {
+
+                                            <tr>
+                                                <td>@test.POST_ID</td>
+                                                <td>@test.TEST_NAME</td>
+                                                <td>@test.START_TIME</td>
+                                                <td>@test.END_TIME</td>
+                                                <td><a href="@Url.Action("UpdateTest", "Manager", new { testId = test.TEST_ID })">Update</a></td>
+                                                <td><a href="@Url.Action("GenerateQuestions", "Manager", new { testId = test.TEST_ID })">Generate Questions</a></td>
+                                                <td><a href="@Url.Action("ShowTestQuestions", "Manager", new { testId = test.TEST_ID })">Questions</a></td>
+
+
+
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>

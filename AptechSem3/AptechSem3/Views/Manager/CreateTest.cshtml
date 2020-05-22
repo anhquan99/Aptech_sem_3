@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Create Test";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Create a Test</h3>
+                    </div>
+                    <form action="@Url.Action("CreateTestDB","Manager")" method="post">
+                        <div class="card-body">
+
+                            <!-- Job Post -->
+                            <div class="form-group">
+                                <label>Test Name</label>
+                                <input type="text" class="form-control" name="TEST_NAME" placeholder="Enter Test Name...">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Job Post</label>
+                                <select class="form-control" name="POST_ID">
+                                    @if (ViewBag.PostList != null)
+                                    {
+                                        foreach (var post in ViewBag.PostList)
+                                        {
+                                            <option value="@post.POST_ID">@post.TITLE</option>
+                                        }
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Start Time</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="datetime-local" class="form-control" name="START_TIME" placeholder="dd/MM/yyyy">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>End Time</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="datetime-local" class="form-control" name="END_TIME" placeholder="dd/MM/yyyy">
+                                </div>
+                            </div>
+
+                            <!-- /.form group -->
+                        </div>
+                        <lable class="col-sm-12 text-danger">
+                            @ViewBag.Error
+
+                        </lable>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <div class="col-sm-2">
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+

@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "Show Test Questions";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Questions</h3>
+
+                        <div class="card-tools">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
+
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Question Id</th>
+                                    <th>Category</th>
+                                    <th>Question Text</th>
+                                    <th>Point</th>
+                                    <th>Answers</th>
+                                    <th>Update</th>
+                                    <th>Delete</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.QuestionList != null)
+                                {
+                                    foreach (var question in ViewBag.QuestionList)
+                                    {
+
+                                        <tr>
+                                            <td>@question.QUESTION_ID</td>
+                                            <td>@question.CATEGORY</td>
+                                            <td>@question.QUESTION1</td>
+                                            <td>@question.POINT</td>
+                                            <td><a href="@Url.Action("ShowAnswers","Manager", new { questionId = question.QUESTION_ID})">Answers</a></td>
+                                            <td><a href="@Url.Action("UpdateQuestion","Manager", new { questionId = question.QUESTION_ID})">Update</a></td>
+                                            <td><a href="@Url.Action("DeleteQuestion","Manager", new { questionId = question.QUESTION_ID})">Delete</a></td>
+
+
+
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+

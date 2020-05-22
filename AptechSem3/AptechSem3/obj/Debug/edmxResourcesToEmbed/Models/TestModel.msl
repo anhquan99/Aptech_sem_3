@@ -20,11 +20,11 @@
           <ScalarProperty Name="NAME" ColumnName="NAME" />
           <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
           <ScalarProperty Name="PHONE" ColumnName="PHONE" />
+          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
           <ScalarProperty Name="EDUCATION" ColumnName="EDUCATION" />
           <ScalarProperty Name="WORK_EXP" ColumnName="WORK_EXP" />
           <ScalarProperty Name="CREATED" ColumnName="CREATED" />
           <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
-          <ScalarProperty Name="MAIL" ColumnName="MAIL" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -35,6 +35,7 @@
           <ScalarProperty Name="CREATED" ColumnName="CREATED" />
           <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
           <ScalarProperty Name="POST" ColumnName="POST" />
+          <ScalarProperty Name="TITLE" ColumnName="TITLE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -77,6 +78,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="APTECH_SEM_3Model.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="TESTs">
       <EntityTypeMapping TypeName="APTECH_SEM_3Model.TEST">
         <MappingFragment StoreEntitySet="TEST">
@@ -107,6 +119,14 @@
       </EndProperty>
     </AssociationSetMapping>
     <FunctionImportMapping FunctionImportName="FIND_QID_FROM_USERNAME" FunctionName="APTECH_SEM_3Model.Store.FIND_QID_FROM_USERNAME" />
+    <FunctionImportMapping FunctionImportName="FIND_QUESTION_WITH_TEST" FunctionName="APTECH_SEM_3Model.Store.FIND_QUESTION_WITH_TEST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.FIND_QUESTION_WITH_TEST_Result">
+          <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="FIND_USR_BY_TEST_END" FunctionName="APTECH_SEM_3Model.Store.FIND_USR_BY_TEST_END">
       <ResultMapping>
         <ComplexTypeMapping TypeName="APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result">
@@ -114,6 +134,47 @@
           <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
           <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
           <ScalarProperty Name="ROLE" ColumnName="ROLE" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_1_RANDOM_QUESTION" FunctionName="APTECH_SEM_3Model.Store.GET_1_RANDOM_QUESTION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_1_RANDOM_QUESTION_Result">
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="QUESTION" ColumnName="QUESTION" />
+          <ScalarProperty Name="POINT" ColumnName="POINT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_2_RANDOM_QUESTIONS" FunctionName="APTECH_SEM_3Model.Store.GET_2_RANDOM_QUESTIONS">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_2_RANDOM_QUESTIONS_Result">
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="QUESTION" ColumnName="QUESTION" />
+          <ScalarProperty Name="POINT" ColumnName="POINT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LAST_QUESTION" FunctionName="APTECH_SEM_3Model.Store.GET_LAST_QUESTION">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_LAST_QUESTION_Result">
+          <ScalarProperty Name="CATEGORY" ColumnName="CATEGORY" />
+          <ScalarProperty Name="QUESTION_ID" ColumnName="QUESTION_ID" />
+          <ScalarProperty Name="QUESTION" ColumnName="QUESTION" />
+          <ScalarProperty Name="POINT" ColumnName="POINT" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_LAST_TEST" FunctionName="APTECH_SEM_3Model.Store.GET_LAST_TEST">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_LAST_TEST_Result">
+          <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
+          <ScalarProperty Name="START_TIME" ColumnName="START_TIME" />
+          <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
+          <ScalarProperty Name="TEST_NAME" ColumnName="TEST_NAME" />
+          <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

@@ -9,7 +9,16 @@ namespace AptechSem3
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/jquery.min.js",
+                        "~/Scripts/adminlte.js",
+                        "~/Scripts/daterangepicker.js",
+                        "~//Scripts/bootstrap.bundle.min.js",
+                        "~//Scripts/jquery.inputmask.bundle.min.js",
+                        "~//Scripts/moment.min.js",
+                        "~//Scripts/tempusdominus-bootstrap-4.min.js",
+                        "~//Scripts/Chart.min.js",
+                        "~//Scripts/util.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -41,8 +50,9 @@ namespace AptechSem3
                       "~/Content/CandidateWeb/assets/js/plugins.js",
                       "~/Content/CandidateWeb/assets/js/main.js"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                       "~/Content/bootstrap.css",
+                      "~/Content/site.css",
+                      "~/Content/Chart.css"));
         }
     }
 }

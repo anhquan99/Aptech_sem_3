@@ -20,11 +20,11 @@
     <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="WORK_EXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="APPROVE_STATUS" Type="Int32" Nullable="false" />
-    <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="JOB_POST" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_APPLICATION" ToRole="JOB_POST" />
     <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_APPLICATION" FromRole="JOB_APPLICATION" ToRole="RESULT" />
     <NavigationProperty Name="USRs" Relationship="Self.USRS_JOB_APPLICATION" FromRole="JOB_APPLICATION" ToRole="USR" />
@@ -37,6 +37,7 @@
     <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="END_DATE" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="POST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_POST" ToRole="JOB_APPLICATION" />
     <NavigationProperty Name="TESTs" Relationship="Self.TEST_POST" FromRole="JOB_POST" ToRole="TEST" />
   </EntityType>
@@ -80,6 +81,16 @@
     <Property Name="TEST_RESULT_3" Type="Double" Nullable="false" />
     <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.RESULT_APPLICATION" FromRole="RESULT" ToRole="JOB_APPLICATION" />
     <NavigationProperty Name="TEST" Relationship="Self.RESULT_TEST" FromRole="RESULT" ToRole="TEST" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
   <EntityType Name="TEST">
     <Key>
@@ -187,6 +198,7 @@
     <EntitySet Name="QUESTIONs" EntityType="Self.QUESTION" />
     <EntitySet Name="REPORTs" EntityType="Self.REPORT" />
     <EntitySet Name="RESULTs" EntityType="Self.RESULT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TESTs" EntityType="Self.TEST" />
     <EntitySet Name="USRs" EntityType="Self.USR" />
     <AssociationSet Name="ANSWER_QUESTION" Association="Self.ANSWER_QUESTION">
@@ -220,15 +232,57 @@
     <FunctionImport Name="FIND_QID_FROM_USERNAME" ReturnType="Collection(Int32)">
       <Parameter Name="USERNAME" Mode="In" Type="String" />
     </FunctionImport>
+    <FunctionImport Name="FIND_QUESTION_WITH_TEST" ReturnType="Collection(APTECH_SEM_3Model.FIND_QUESTION_WITH_TEST_Result)">
+      <Parameter Name="TEST_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
     <FunctionImport Name="FIND_USR_BY_TEST_END" ReturnType="Collection(APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result)">
       <Parameter Name="TIME1" Mode="In" Type="DateTime" />
       <Parameter Name="TIME2" Mode="In" Type="DateTime" />
     </FunctionImport>
+    <FunctionImport Name="GET_1_RANDOM_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_1_RANDOM_QUESTION_Result)">
+      <Parameter Name="CATEGORY" Mode="In" Type="String" />
+      <Parameter Name="POINT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_2_RANDOM_QUESTIONS" ReturnType="Collection(APTECH_SEM_3Model.GET_2_RANDOM_QUESTIONS_Result)">
+      <Parameter Name="CATEGORY" Mode="In" Type="String" />
+      <Parameter Name="POINT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_LAST_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_QUESTION_Result)" />
+    <FunctionImport Name="GET_LAST_TEST" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_TEST_Result)" />
   </EntityContainer>
+  <ComplexType Name="FIND_QUESTION_WITH_TEST_Result">
+    <Property Type="Int32" Name="TEST_ID" Nullable="false" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+  </ComplexType>
   <ComplexType Name="FIND_USR_BY_TEST_END_Result">
     <Property Type="Int32" Name="APPLY_ID" Nullable="true" />
     <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="100" />
     <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GET_1_RANDOM_QUESTION_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_2_RANDOM_QUESTIONS_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_LAST_QUESTION_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_LAST_TEST_Result">
+    <Property Type="Int32" Name="POST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="START_TIME" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="END_TIME" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TEST_NAME" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="TEST_ID" Nullable="false" />
   </ComplexType>
 </Schema>

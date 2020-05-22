@@ -12,18 +12,22 @@ namespace AptechSem3
 {
     public class MvcApplication : System.Web.HttpApplication
     {
-        private static void applicationThread() {
+        //private static void applicationThread() {
+        //    AreaRegistration.RegisterAllAreas();
+        //    FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+        //    RouteConfig.RegisterRoutes(RouteTable.Routes);
+        //    BundleConfig.RegisterBundles(BundleTable.Bundles);
+        //}
+        protected void Application_Start()
+        {
+            //Thread t1 = new Thread(applicationThread);
+            //Thread t2 = new Thread(UsrService.deletebackgroundUsrNotAvailable);
+            //t1.Start();
+            //t2.Start();
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-        }
-        protected void Application_Start()
-        {
-            Thread t1 = new Thread(applicationThread);
-            Thread t2 = new Thread(UsrService.deletebackgroundUsrNotAvailable);
-            t1.Start();
-            t2.Start();
         }
     }
 }

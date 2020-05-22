@@ -34,6 +34,7 @@ namespace AptechSem3.Models
         public DbSet<QUESTION> QUESTIONs { get; set; }
         public DbSet<REPORT> REPORTs { get; set; }
         public DbSet<RESULT> RESULTs { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<TEST> TESTs { get; set; }
         public DbSet<USR> USRs { get; set; }
     
@@ -44,6 +45,15 @@ namespace AptechSem3.Models
                 new ObjectParameter("USERNAME", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("FIND_QID_FROM_USERNAME", uSERNAMEParameter);
+        }
+    
+        public virtual ObjectResult<FIND_QUESTION_WITH_TEST_Result> FIND_QUESTION_WITH_TEST(Nullable<int> tEST_ID)
+        {
+            var tEST_IDParameter = tEST_ID.HasValue ?
+                new ObjectParameter("TEST_ID", tEST_ID) :
+                new ObjectParameter("TEST_ID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FIND_QUESTION_WITH_TEST_Result>("FIND_QUESTION_WITH_TEST", tEST_IDParameter);
         }
     
         public virtual ObjectResult<FIND_USR_BY_TEST_END_Result> FIND_USR_BY_TEST_END(Nullable<System.DateTime> tIME1, Nullable<System.DateTime> tIME2)
@@ -57,6 +67,42 @@ namespace AptechSem3.Models
                 new ObjectParameter("TIME2", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<FIND_USR_BY_TEST_END_Result>("FIND_USR_BY_TEST_END", tIME1Parameter, tIME2Parameter);
+        }
+    
+        public virtual ObjectResult<GET_1_RANDOM_QUESTION_Result> GET_1_RANDOM_QUESTION(string cATEGORY, Nullable<int> pOINT)
+        {
+            var cATEGORYParameter = cATEGORY != null ?
+                new ObjectParameter("CATEGORY", cATEGORY) :
+                new ObjectParameter("CATEGORY", typeof(string));
+    
+            var pOINTParameter = pOINT.HasValue ?
+                new ObjectParameter("POINT", pOINT) :
+                new ObjectParameter("POINT", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_1_RANDOM_QUESTION_Result>("GET_1_RANDOM_QUESTION", cATEGORYParameter, pOINTParameter);
+        }
+    
+        public virtual ObjectResult<GET_2_RANDOM_QUESTIONS_Result> GET_2_RANDOM_QUESTIONS(string cATEGORY, Nullable<int> pOINT)
+        {
+            var cATEGORYParameter = cATEGORY != null ?
+                new ObjectParameter("CATEGORY", cATEGORY) :
+                new ObjectParameter("CATEGORY", typeof(string));
+    
+            var pOINTParameter = pOINT.HasValue ?
+                new ObjectParameter("POINT", pOINT) :
+                new ObjectParameter("POINT", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_2_RANDOM_QUESTIONS_Result>("GET_2_RANDOM_QUESTIONS", cATEGORYParameter, pOINTParameter);
+        }
+    
+        public virtual ObjectResult<GET_LAST_QUESTION_Result> GET_LAST_QUESTION()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_LAST_QUESTION_Result>("GET_LAST_QUESTION");
+        }
+    
+        public virtual ObjectResult<GET_LAST_TEST_Result> GET_LAST_TEST()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_LAST_TEST_Result>("GET_LAST_TEST");
         }
     }
 }

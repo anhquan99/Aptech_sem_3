@@ -24,6 +24,7 @@ namespace AptechSem3.Models
         public System.DateTime CREATED { get; set; }
         public System.DateTime END_DATE { get; set; }
         public string POST { get; set; }
+        public string TITLE { get; set; }
     
         public virtual ICollection<JOB_APPLICATION> JOB_APPLICATION { get; set; }
         public virtual ICollection<TEST> TESTs { get; set; }
