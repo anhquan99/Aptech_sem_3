@@ -36,8 +36,8 @@
     <Property Name="POST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="POST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_POST" ToRole="JOB_APPLICATION" />
     <NavigationProperty Name="TESTs" Relationship="Self.TEST_POST" FromRole="JOB_POST" ToRole="TEST" />
   </EntityType>
@@ -249,6 +249,7 @@
     </FunctionImport>
     <FunctionImport Name="GET_LAST_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_QUESTION_Result)" />
     <FunctionImport Name="GET_LAST_TEST" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_TEST_Result)" />
+    <FunctionImport Name="GET_RESULT_WITH_APPLY" ReturnType="Collection(APTECH_SEM_3Model.GET_RESULT_WITH_APPLY_Result)" />
   </EntityContainer>
   <ComplexType Name="FIND_QUESTION_WITH_TEST_Result">
     <Property Type="Int32" Name="TEST_ID" Nullable="false" />
@@ -284,5 +285,14 @@
     <Property Type="DateTime" Name="END_TIME" Nullable="false" Precision="23" />
     <Property Type="String" Name="TEST_NAME" Nullable="false" MaxLength="250" />
     <Property Type="Int32" Name="TEST_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_RESULT_WITH_APPLY_Result">
+    <Property Type="Int32" Name="APPLY_ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="APPROVE_STATUS" Nullable="false" />
+    <Property Type="Int32" Name="TEST_INDEX" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_1" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_2" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_3" Nullable="false" />
   </ComplexType>
 </Schema>

@@ -14,7 +14,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AptechSem3</RootNamespace>
     <AssemblyName>AptechSem3</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -72,6 +73,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
@@ -80,11 +82,8 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -126,6 +125,7 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -156,6 +156,7 @@
     <Compile Include="Models\ANSWER.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomApplication.cs" />
     <Compile Include="Models\CustomJobPost.cs" />
     <Compile Include="Models\FIND_QUESTION_WITH_TEST_Result.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
@@ -173,6 +174,9 @@
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GET_LAST_TEST_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_RESULT_WITH_APPLY_Result.cs">
       <DependentUpon>TestModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\JOB_APPLICATION.cs">
@@ -600,7 +604,6 @@
     <Content Include="Views\Shared\BlankLayout.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Apply\ApplyForId.cshtml" />
-    <Content Include="Views\Apply\ApplyForm.cshtml" />
     <Content Include="Views\Apply\Apply.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\JobPost.cshtml" />
@@ -627,6 +630,12 @@
     <Content Include="Views\Manager\UpdatePost.cshtml" />
     <Content Include="Views\Manager\UpdateQuestion.cshtml" />
     <Content Include="Views\Manager\UpdateTest.cshtml" />
+    <Content Include="Views\Manager\ReportFilter.cshtml" />
+    <Content Include="Views\Manager\ShowStatusCandidates.cshtml" />
+    <Content Include="Views\Apply\ApplyForm.cshtml" />
+    <Content Include="Views\Apply\UpdateForm.cshtml" />
+    <Content Include="Views\Manager\CreateQAToTest.cshtml" />
+    <Content Include="Views\Manager\AddExistedQuestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

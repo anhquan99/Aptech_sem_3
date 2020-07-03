@@ -16,15 +16,7 @@
                             @ViewBag.Error
 
                         </lable>
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
-
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -32,14 +24,12 @@
                             <thead>
                                 <tr>
                                     <th>Post Id</th>
-                                    <th>Personal Id</th>
                                     <th>Name</th>
                                     <th>Address</th>
-                                    <th>Phone</th>
+                                    <th>Education</th>
+                                    <th>Work Exp</th>
                                     <th>Created</th>
                                     <th>Status</th>
-                                    <th>Approve</th>
-                                    <th>Unapprove</th>
                                     <th>More Detail</th>
 
                                 </tr>
@@ -58,21 +48,25 @@
                                             case 1:
                                                 status = "Approved";
                                                 break;
+                                            case -2:
+                                                status = "Failed";
+                                                break;
+                                            case 2:
+                                                status = "Passed";
+                                                break;
                                             default:
                                                 status = "Unseen";
                                                 break;
                                         }
                                 <tr>
                                     <td>@application.POST_ID</td>
-                                    <td>@application.PERSONAL_ID</td>
                                     <td>@application.NAME</td>
                                     <td>@application.ADDRESS</td>
-                                    <td>@application.PHONE</td>
+                                    <td>@application.EDUCATION</td>
+                                    <td>@application.WORK_EXP</td>
+
                                     <td>@application.CREATED</td>
                                     <td>@status</td>
-
-                                    <td><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = 1})">Approve</a></td>
-                                    <td><a href="@Url.Action("ApproveApplication", "Manager", new { applyId = application.APPLY_ID, status = -1 })">Unapprove</a></td>
                                     <td><a href="@Url.Action("ApplicationDetail", "Manager", new { applyId = application.APPLY_ID})">More Detail</a></td>
 
 

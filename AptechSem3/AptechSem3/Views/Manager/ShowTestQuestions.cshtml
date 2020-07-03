@@ -12,19 +12,11 @@
                     <div class="card-header">
                         <h3 class="card-title">Questions</h3>
 
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">
 
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
-                        <table class="table table-hover text-nowrap">
+                        <table class="table table-hover text-nowrap " >
                             <thead>
                                 <tr>
                                     <th>Question Id</th>
@@ -32,8 +24,12 @@
                                     <th>Question Text</th>
                                     <th>Point</th>
                                     <th>Answers</th>
-                                    <th>Update</th>
-                                    <th>Delete</th>
+                                    @if (ViewBag.testDate == true)
+                                    {
+                                        <th>Update</th>
+                                        <th>Remove</th>
+                                    }
+
 
                                 </tr>
                             </thead>
@@ -49,9 +45,11 @@
                                             <td>@question.QUESTION1</td>
                                             <td>@question.POINT</td>
                                             <td><a href="@Url.Action("ShowAnswers","Manager", new { questionId = question.QUESTION_ID})">Answers</a></td>
-                                            <td><a href="@Url.Action("UpdateQuestion","Manager", new { questionId = question.QUESTION_ID})">Update</a></td>
-                                            <td><a href="@Url.Action("DeleteQuestion","Manager", new { questionId = question.QUESTION_ID})">Delete</a></td>
-
+                                            @if (ViewBag.testDate == true)
+                                            {
+                                                <td><a href="@Url.Action("UpdateQuestion","Manager", new { questionId = question.QUESTION_ID})">Update</a></td>
+                                                <td><a href="@Url.Action("RemoveQuestion","Manager", new { questionId = question.QUESTION_ID, testId = ViewBag.testId})">Remove</a></td>
+                                            }
 
 
 
@@ -62,6 +60,17 @@
                             </tbody>
                         </table>
                     </div>
+                    @if (ViewBag.testDate == true)
+                    {
+                        <div class="card-footer">
+                            <a class="btn btn-primary card-link" href="@Url.Action("CreateQAToTest", "Manager", new { testId = ViewBag.testId })">Add a New Question</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("RemoveQuestions", "Manager", new { testId = ViewBag.testId })">Remove all Questions</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("AddQuestions", "Manager", new { testId = ViewBag.testId })">Generate Questions</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("AddExistedQuestion", "Manager", new { testId = ViewBag.testId })">Add Existed Question</a>
+
+                        </div>
+                    }
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

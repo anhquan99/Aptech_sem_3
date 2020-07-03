@@ -3,7 +3,11 @@
     ViewBag.Title = "Application Detail";
     Layout = "~/Views/Shared/ManagerLayout.cshtml";
     AptechSem3.Models.JOB_APPLICATION application = null;
-
+    AptechSem3.Models.USR user= null;
+    if (TempData["User"] != null)
+    {
+        user = (AptechSem3.Models.USR)TempData["User"];
+    }
     if (TempData["Application"] != null)
     {
         application = (AptechSem3.Models.JOB_APPLICATION)TempData["Application"];
@@ -14,8 +18,14 @@
         case -1:
             status = "Unapproved";
             break;
+        case 2:
+            status = "Passed";
+            break;
         case 1:
             status = "Approved";
+            break;
+        case -2:
+            status = "Passed";
             break;
         default:
             status = "Unseen";
@@ -29,7 +39,7 @@
             <div class="col-md-6">
                 <div class="card card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Create a Job Post</h3>
+                        <h3 class="card-title">Application Detail</h3>
                     </div>
                     <div class="card-body">
 
@@ -81,10 +91,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label>Created</label>
+                            <label>Status</label>
                             <input type="text" class="form-control" value="@status" disabled>
                         </div>
-
 
 
 
@@ -93,13 +102,96 @@
 
                     <!-- /.card-body -->
                     <div class="card-footer">
-                            <button type="submit" class="btn btn-default"><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = -1})">Unapprove</a></button>
-                            <button type="submit" class="btn btn-default float-right"><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = 1})">Approve</a></button>
+                        <button type="submit" class="btn btn-default"><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = -1})">Unapprove</a></button>
+                        <button type="submit" class="btn btn-default float-right"><a href="@Url.Action("ApproveApplication","Manager", new { applyId = application.APPLY_ID, status = 1})">Approve</a></button>
                     </div>
 
                 </div>
 
             </div>
+            @if (user != null)
+            { 
+        <div class="col-md-6">
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">User Detail</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Apply Id</label>
+                        <input type="text" class="form-control" value="@user.APPLY_ID" disabled>
+                    </div>
+
+                    <!-- Job Post -->
+                    <div class="form-group">
+                        <label>Username</label>
+                        <input type="text" class="form-control" value="@user.USERNAME" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="text" class="form-control" value="@user.PASSWORD" disabled>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Role</label>
+                        <input type="text" class="form-control" value="@user.ROLE" disabled>
+                    </div>
+
+                    <!-- /.form group -->
+                </div>
+                <div class="card-footer">
+                    <div class="col-sm-2">
+                        <a href="@Url.Action("DeleteCandidate","Manager", new { username = @user.USERNAME})" class="btn btn-primary">Delete User</a>
+                    </div>
+                </div>
+
+                <!-- /.card-body -->
+
+
+            </div>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title">Mail</h3>
+                </div>
+                <form action="@Url.Action("Mail", "Manager", new { APPLY_ID = user.APPLY_ID, TEST_ID = ViewBag.Test.TEST_ID})" method="get">
+                    <div class="card-body">
+
+
+                        <input type="text" class="form-control" name="APPLY_ID" value="@application.APPLY_ID" hidden>
+
+                        <div class="form-group">
+                            <label>Job Post</label>
+                            <select class="form-control" name="TEST_ID">
+                                @if (ViewBag.TestList != null)
+                                {
+                                    foreach (var test in ViewBag.TestList)
+                                    {
+                                        <option value="@test.TEST_ID">@test.TEST_NAME</option>
+                                    }
+                                }
+
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>@ViewBag.error</label>
+                        </div>
+
+                        <!-- /.form group -->
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="card-footer">
+                        <div class="col-sm-2">
+                            <input type="submit" class="btn btn-primary" value="Mail" />
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+            }
+            
         </div>
 
     </div>

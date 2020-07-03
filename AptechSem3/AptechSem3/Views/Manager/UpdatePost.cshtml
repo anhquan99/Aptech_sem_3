@@ -23,13 +23,13 @@
                             <!-- Job Post -->
                             <div class="form-group">
                                 <label>Job Title</label>
-                                <input type="text" class="form-control" name="TITLE" placeholder="Enter Title..." value="@post.TITLE">
+                                <input type="text" class="form-control" name="TITLE" placeholder="Enter Title..." value="@post.TITLE" required>
 
                             </div>
 
                             <div class="form-group">
                                 <label>Job Description</label>
-                                <textarea class="form-control" rows="3" name="POST" placeholder="Enter Job Discription..." style="margin-top: 0px; margin-bottom: 0px; height: 91px;">@post.POST</textarea>
+                                <textarea class="form-control" rows="3" name="POST" placeholder="Enter Job Discription..." style="margin-top: 0px; margin-bottom: 0px; height: 91px;" required>@post.POST</textarea>
                             </div>
                             <input type="text" class="form-control" name="POST_ID" placeholder="Enter Title..." value="@post.POST_ID" hidden>
 

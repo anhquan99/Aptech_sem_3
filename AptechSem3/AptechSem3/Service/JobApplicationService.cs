@@ -15,11 +15,11 @@ namespace AptechSem3.Service
             try
             {
                 t.CREATED = DateTime.Now;
-                if (JobApplicationValidation.Validate(t))
-                {
+                //if (JobApplicationValidation.Validate(t))
+                //{
                     db.JOB_APPLICATION.Add(t);
                     if (db.SaveChanges() != 0) return true;
-                }
+                //}
                 return false;
             }
             catch (Exception)

@@ -1,6 +1,7 @@
 ﻿using System;
 using AptechSem3.Models;
 using System.Collections.Generic;
+using AptechSem3.Models;
 using System.Linq;
 using System.Web;
 
@@ -8,6 +9,7 @@ namespace AptechSem3.Service.ModelService
 {
     public class ApplicationService : IService<JOB_APPLICATION>
     {
+
         public bool create(JOB_APPLICATION t)
         {
             try
@@ -21,7 +23,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -45,7 +47,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -60,7 +62,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -77,7 +79,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -111,7 +113,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -126,9 +128,11 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
+
+        
         public bool apply(string applyId, int status)
         {
             try
@@ -152,7 +156,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
         public string trim(string t)
@@ -164,7 +168,91 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
+            }
+        }
+
+        public int getTestIdByApplyId(string applyId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    int id = Int32.Parse(applyId);
+                    var selectedPost = (from p in db.JOB_APPLICATION
+                                        where p.APPLY_ID == id
+                                        select p).SingleOrDefault();
+
+                    int postId = selectedPost.POST_ID;
+                    var selectedTest = (from t in db.TESTs where t.POST_ID == postId select t).SingleOrDefault();
+                    if (selectedTest != null)
+                    { 
+                        return selectedTest.TEST_ID;
+
+                    }
+                    else throw new Exception();
+                }
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public List<CustomApplication> findAllCustomApplications()
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedApplications = (from p in db.GET_RESULT_WITH_APPLY() select p).ToList();
+                    List<CustomApplication> list = new List<CustomApplication>();
+                    if (selectedApplications != null)
+                    {
+                        foreach (var a in selectedApplications)
+                        {
+                            CustomApplication application = new CustomApplication() { APPLY_ID = a.APPLY_ID, NAME = a.NAME, APPROVE_STATUS = a.APPROVE_STATUS, TEST_INDEX= a.TEST_INDEX, TEST_RESULT_1 = a.TEST_RESULT_1, TEST_RESULT_2 = a.TEST_RESULT_2, TEST_RESULT_3 = a.TEST_RESULT_3 };
+                            list.Add(application);
+                        }
+
+                    }
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+
+        public List<CustomApplication> findCustomApplicationsWithCondition(int condition)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedApplications = (from p in db.GET_RESULT_WITH_APPLY() select p).ToList();
+                    List<CustomApplication> list = new List<CustomApplication>();
+                    if (selectedApplications != null)
+                    {
+                        foreach (var a in selectedApplications)
+                        {
+                            if (a.APPROVE_STATUS == condition)
+                            { 
+                                CustomApplication application = new CustomApplication() { APPLY_ID = a.APPLY_ID, NAME = a.NAME, APPROVE_STATUS = a.APPROVE_STATUS, TEST_INDEX = a.TEST_INDEX, TEST_RESULT_1 = a.TEST_RESULT_1, TEST_RESULT_2 = a.TEST_RESULT_2, TEST_RESULT_3 = a.TEST_RESULT_3 };
+                                list.Add(application);
+
+                            }
+                        }
+
+                    }
+                    return list;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
 

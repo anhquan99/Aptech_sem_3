@@ -104,5 +104,10 @@ namespace AptechSem3.Models
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_LAST_TEST_Result>("GET_LAST_TEST");
         }
+    
+        public virtual ObjectResult<GET_RESULT_WITH_APPLY_Result> GET_RESULT_WITH_APPLY()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<GET_RESULT_WITH_APPLY_Result>("GET_RESULT_WITH_APPLY");
+        }
     }
 }

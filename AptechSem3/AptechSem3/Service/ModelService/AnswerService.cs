@@ -21,7 +21,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -46,7 +46,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -61,7 +61,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -78,7 +78,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -105,7 +105,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         public List<ANSWER> findByQuestionId(string questionId)
@@ -123,7 +123,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
     }

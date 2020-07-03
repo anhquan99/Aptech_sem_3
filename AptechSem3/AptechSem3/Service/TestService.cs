@@ -85,7 +85,7 @@ namespace AptechSem3.Service
                 throw;
             }
         }
-        public static void calculateScore(List<String> QuestionIds, List<String> AnswerLists,int apply_id,int index)
+        public static double calculateScore(List<String> QuestionIds, List<String> AnswerLists,int apply_id,int index)
         {
             APTECH_SEM_3Entities db = new APTECH_SEM_3Entities();
             bool flag = false;
@@ -116,6 +116,7 @@ namespace AptechSem3.Service
                     }
                 }
                 if(db.SaveChanges() == 0 && flag == true) throw new Exception("CAN NOT UPDATE RESULT");
+                return result.TEST_RESULT_1 + result.TEST_RESULT_2 + result.TEST_RESULT_3;
             }
             catch (Exception)
             {

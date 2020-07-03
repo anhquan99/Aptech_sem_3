@@ -24,13 +24,9 @@ namespace AptechSem3.Controllers
                 TEST test = TestService.getTestByApplyId(apply_id);
                 ViewBag.Test = test;
                 //if start time is later than now and end time is ealier than now let the candidate have link to do test
-                if (DateTime.Compare(DateTime.Now,test.START_TIME) > 0 && DateTime.Compare(DateTime.Now,test.END_TIME) < 0) 
+                if (DateTime.Compare(DateTime.Now, test.START_TIME) > 0 && DateTime.Compare(DateTime.Now, test.END_TIME) < 0)
                 {
-                    ViewBag.link = "true";
-                }
-                else
-                {
-                    ViewBag.link = "false";   
+                    ViewBag.link = TestService.getIndexByApplyId(apply_id);
                 }
                 //timer
                 TimeSpan timeLeft = test.END_TIME - test.START_TIME;
@@ -63,9 +59,20 @@ namespace AptechSem3.Controllers
                     {
                         return RedirectToAction("finished", "Test");
                     }
-
-                    //variable list to save question
-                    List<TestQuestion> list = TestService.getQuestionByUsernameAndIndex(Session["username"].ToString(), index);
+                    if (index == 1)
+                    {
+                        ViewBag.part = "General";
+                    }
+                    else if (index == 2)
+                    {
+                        ViewBag.part = "Mathemactics";
+                    }
+                    else if(index == 3)
+                    {
+                        ViewBag.part = "Computer technology";
+                    }
+                        //variable list to save question
+                        List<TestQuestion> list = TestService.getQuestionByUsernameAndIndex(Session["username"].ToString(), index);
 
                     //send quetion and answer to web page
                     ViewBag.Question = list;
@@ -129,7 +136,10 @@ namespace AptechSem3.Controllers
             UsrService usrService = new UsrService();
             int apply_id = usrService.getApplyIdByUsername(Session["username"].ToString());
             int index = TestService.getIndexByApplyId(apply_id);
-            if (DateTime.Compare(DateTime.Now, TestService.getStartTimeByApplyId(apply_id)) > 0 && DateTime.Compare(DateTime.Now, TestService.getEndTimeByApplyId(apply_id)) < 0)
+            var endDate = TestService.getEndTimeByApplyId(apply_id);
+            //add additional time to ensure weak connection
+            endDate.AddMinutes(2);
+            if (DateTime.Compare(DateTime.Now, TestService.getStartTimeByApplyId(apply_id)) > 0 && DateTime.Compare(DateTime.Now, endDate )< 0)
             {
                 //get question id list 
                 String result = Request.Params.Get("QuestionList").Trim();
@@ -143,11 +153,27 @@ namespace AptechSem3.Controllers
                 }
 
                 //calculate result score
-                TestService.calculateScore(QuestionIds, AnswerLists, apply_id, index);
-
+                double score = TestService.calculateScore(QuestionIds, AnswerLists, apply_id, index);
+                AptechSem3.Service.ModelService.TestService service = new Service.ModelService.TestService();
+                AptechSem3.Service.ModelService.ApplicationService appService = new Service.ModelService.ApplicationService();
+                double total = (double)service.GetScoreFromTestAndCategory(appService.getTestIdByApplyId(apply_id.ToString()), "none");
+                if(score>= total * 0.8)
+                {
+                    JOB_APPLICATION app = appService.findById(apply_id.ToString());
+                    app.APPROVE_STATUS = 2;
+                    appService.update(app);
+                }
+                else
+                {
+                    JOB_APPLICATION app = appService.findById(apply_id.ToString());
+                    app.APPROVE_STATUS = -2;
+                    appService.update(app);
+                }
                 //update index to 1
                 index++;
                 TestService.updateIndexByApplyId(apply_id, index);
+
+
                 if (DateTime.Compare(DateTime.Now, TestService.getEndTimeByApplyId(apply_id)) > 0) return RedirectToAction("finished", "Test");
                 return RedirectToAction("DoTest", "Test");
             }

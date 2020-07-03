@@ -17,13 +17,31 @@ namespace AptechSem3.Service.ModelService
                 {
                     db.TESTs.Add(t);
                     if (db.SaveChanges() == 0) throw new Exception();
-                    this.addQuestions(this.GetLastTestId());
+                    if (this.addQuestions(this.GetLastTestId()) == false)
+                    {
+                        throw new ExecutionEngineException();
+                    }
+                    
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (ExecutionEngineException ex)
             {
-                throw new NotImplementedException();
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    int tempId = this.GetLastTestId();
+                    var temp = (from p in db.TESTs where p.TEST_ID == tempId select p).SingleOrDefault();
+                    if(temp != null)
+                    {
+                        db.TESTs.Remove(temp);
+                        db.SaveChanges();
+                    }
+                }
+                return false;
+            }
+            catch(Exception ex)
+            {
+                throw;
             }
         }
 
@@ -47,7 +65,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -62,7 +80,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -80,7 +98,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -108,7 +126,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 
@@ -133,7 +151,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                throw ;
             }
         }
 
@@ -145,6 +163,7 @@ namespace AptechSem3.Service.ModelService
                 {
                     QuestionService questionService = new QuestionService();
                     var selectedTest = (from p in db.TESTs where p.TEST_ID == testId select p).SingleOrDefault();
+                    if (selectedTest == null) return false;
                     var Q_GK_5 = (from p in db.GET_2_RANDOM_QUESTIONS("GENERAL KNOWLEDGE", 5) select p).ToList();
                     var Q_GK_10 = (from p in db.GET_2_RANDOM_QUESTIONS("GENERAL KNOWLEDGE", 10) select p).ToList();
                     var Q_GK_15 = (from p in db.GET_1_RANDOM_QUESTION("GENERAL KNOWLEDGE", 15) select p).ToList();
@@ -154,7 +173,7 @@ namespace AptechSem3.Service.ModelService
                     var Q_CT_5 = (from p in db.GET_2_RANDOM_QUESTIONS("COMPUTER TECHNOLOGY", 5) select p).ToList();
                     var Q_CT_10 = (from p in db.GET_2_RANDOM_QUESTIONS("COMPUTER TECHNOLOGY", 10) select p).ToList();
                     var Q_CT_15 = (from p in db.GET_1_RANDOM_QUESTION("COMPUTER TECHNOLOGY", 15) select p).ToList();
-                    if ((Q_GK_5 != null) && (Q_GK_10 != null) && (Q_GK_15 != null) && (Q_M_5 != null) && (Q_M_10 != null) && (Q_M_15 != null) && (Q_CT_5 != null) && (Q_CT_10 != null) && (Q_CT_15 != null))
+                    if ((Q_GK_5.Count == 2) && (Q_GK_10.Count == 2) && (Q_GK_15.Count == 1) && (Q_M_5.Count == 2) && (Q_M_10.Count == 2) && (Q_M_15.Count == 1) && (Q_CT_5.Count == 2) && (Q_CT_10.Count == 2) && (Q_CT_15.Count == 1))
                     {
 
                         foreach (var q in Q_GK_5)
@@ -214,12 +233,13 @@ namespace AptechSem3.Service.ModelService
                         }
                         if (db.SaveChanges() == 0) throw new Exception();
                     }
+                    else return false;
                     return true;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception();
+                return false;
             }
         }
 
@@ -235,7 +255,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -260,10 +280,107 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
+        public bool RemoveQuestionFromTest(int questionId, int testId)
+        {
+
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedTest = (from p in db.TESTs where p.TEST_ID == testId select p).SingleOrDefault();
+                    foreach (var q in selectedTest.QUESTIONs)
+                    {
+                        if (q.QUESTION_ID == questionId) 
+                        {
+                            selectedTest.QUESTIONs.Remove(q);
+                            if (db.SaveChanges() == 0) throw new Exception();
+                            else return true;
+                        }
+
+                    }
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ;
+            }
+        }
+
+        public bool AddQuestionToTest(int questionId, int testId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedTest = (from p in db.TESTs where p.TEST_ID == testId select p).SingleOrDefault();
+                    QuestionService questionService = new QuestionService();
+                    var selectedQuestion = (from p in db.QUESTIONs where p.QUESTION_ID == questionId select p).SingleOrDefault();
+                    selectedTest.QUESTIONs.Add(selectedQuestion);
+                    if (db.SaveChanges() == 0) throw new Exception();
+                    else return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ;
+            }
+        }
+
+        public bool RemoveQuestionsFromTest(int testId)
+        {
+
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedTest = (from p in db.TESTs where p.TEST_ID == testId select p).SingleOrDefault();
+                    List<QUESTION> questions = selectedTest.QUESTIONs.ToList();
+                    foreach (var q in questions)
+                    {
+                            selectedTest.QUESTIONs.Remove(q);
+                            if (db.SaveChanges() == 0) throw new Exception();
+                    }
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ;
+            }
+        }
+        public List<TEST> findByPost(int postId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    return (from p in db.TESTs where p.POST_ID == postId select p).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public TEST findByPostSingle(int postId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    return (from p in db.TESTs where p.POST_ID == postId select p).SingleOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
 
     }
 }

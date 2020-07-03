@@ -18,27 +18,38 @@ namespace AptechSem3.Controllers
         [HttpPost]
         public ActionResult ApplyForm(String PERSONAL_ID, String PHONE, int postId)
         {
-            ViewBag.postId = postId;
-            ViewBag.phone = PHONE;
-            ViewBag.person_id = PERSONAL_ID;
+            ViewBag.POST_ID = postId;
+            ViewBag.PHONE = PHONE;
+            ViewBag.PERSONAL_ID = PERSONAL_ID;
             JOB_APPLICATION application = JobApplicationService.findByPersonalIdAndPhone(PERSONAL_ID, PHONE);
             ViewBag.application = application;
-            return View();
+            if (application == null)
+            {
+                return View("ApplyForm");
+            }
+            else {
+                TempData["Application"] = application;
+                return View("UpdateForm");
+            }
         }
         [HttpPost]
         public ActionResult Apply(JOB_APPLICATION apply)
         {
-            JOB_APPLICATION application = JobApplicationService.findByPersonalIdAndPhone(apply.PERSONAL_ID, apply.PHONE);
             JobApplicationService service = new JobApplicationService();
-            if (application != null)
+            if (service.Create(apply))
             {
-                service.update(application);
-            }
-            else
-            {
-                service.Create(application);
+                return RedirectToAction("Index", "Home");
             }
             return View();
+        }
+        public ActionResult UpdateForm(JOB_APPLICATION apply)
+        {
+            JobApplicationService jobApplicationService = new JobApplicationService();
+            if (jobApplicationService.update(apply))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else return View("Apply","Apply", new { id = apply.POST_ID});
         }
     }
 }

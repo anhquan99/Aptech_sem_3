@@ -45,11 +45,17 @@ var x = setInterval(function() {
     <div class="row" style="text-align:center">
         <h3 style="color:#f15f22;font-size:30px;width: 100%;">WEBSTER ORGANISATION</h3>
     </div>
+    @if(ViewBag.part != null)
+    {
+        <div class="row">
+        <p>@ViewBag.part</p>
+         </div>
+    }
     <div class="row">
         <p id="timeSpan"></p>
     </div>
     <form method="post" action="@Url.Action("Submit", "Test")" id="testForm">
-        <input type="hidden" name="QuestionList" value="@ViewBag.QuestionList"/>
+        <input type="hidden" name="QuestionList" value="@ViewBag.QuestionList" />
         @foreach (var i in ViewBag.Question)
         {
             <div class="row ">
@@ -77,11 +83,11 @@ var x = setInterval(function() {
                 </div>
             </div>
         }
-            <div class="row justify-content-center" style="margin-right:0px;margin-left:0px; margin-top:10px">
-                <div class="col-md-6">
-                    <input class="btn btn-primary" type="submit" style="width:100%" value="Submit" />
-                </div>
+        <div class="row justify-content-center" style="margin-right:0px;margin-left:0px; margin-top:10px">
+            <div class="col-md-6">
+                <input class="btn btn-primary" type="submit" style="width:100%" value="Submit" />
             </div>
+        </div>
     </form>
 </div>
 

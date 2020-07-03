@@ -35,12 +35,22 @@
 
                             <div class="form-group">
                                 <label>Point</label>
+                                <select class="form-control" name="POINT">
+                                    <option value="5" @if (question.POINT == 5) { @Html.Raw("Selected") }>5</option>
+                                    <option value="10" @if (question.POINT == 10) { @Html.Raw("Selected") }>10</option>
+                                    <option value="15" @if (question.POINT == 15) { @Html.Raw("Selected") }>15</option>
+
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Point</label>
                                 <input type="text" class="form-control" name="POINT" placeholder="Enter Point..." value="@question.POINT">
                             </div>
 
                             <div class="form-group">
                                 <label>Question Text</label>
-                                <textarea class="form-control" rows="3" name="QUESTION1" placeholder="Enter Question Text..." style="margin-top: 0px; margin-bottom: 0px; height: 91px;">@question.QUESTION1</textarea>
+                                <textarea class="form-control" rows="3" name="QUESTION1" placeholder="Enter Question Text..." style="margin-top: 0px; margin-bottom: 0px; height: 91px;" required>@question.QUESTION1</textarea>
                             </div>
 
                             <!-- /.form group -->

@@ -97,7 +97,7 @@ namespace AptechSem3.Service
         {
             try
             {
-                int apply_id = (from p in db.USRs where p.USERNAME == "test-name" select p).SingleOrDefault().APPLY_ID ?? 0;
+                int apply_id = (from p in db.USRs where p.USERNAME == username select p).SingleOrDefault().APPLY_ID ?? 0;
                 if (apply_id == 0) throw new Exception("CAN NOT FOUND USER APPLY_ID");
                 return apply_id;
             }
@@ -128,6 +128,22 @@ namespace AptechSem3.Service
                     }
                     //sleep for 1 minute
                     Thread.Sleep(60000);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public USR findUsrByApplyID(int applyId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selected = (from p in db.USRs where p.APPLY_ID == applyId select p).SingleOrDefault();
+                    return selected;
                 }
             }
             catch (Exception)

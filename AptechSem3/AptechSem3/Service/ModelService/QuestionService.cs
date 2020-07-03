@@ -21,7 +21,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -46,7 +46,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -61,7 +61,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -79,7 +79,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -106,7 +106,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         //Hien thi cau hoi trong bai test
@@ -128,7 +128,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         public int GetLastQuestionId()
@@ -143,7 +143,42 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
+            }
+        }
+
+        public List<QUESTION> GetQuestionsExceptTestQ(int testId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    var selectedTest = (from p in db.TESTs where p.TEST_ID == testId select p).SingleOrDefault();
+                    List<QUESTION> questions = new List<QUESTION>();
+                    var selectedQuestions = (from q in db.QUESTIONs select q).ToList();
+                    
+                    foreach (var q in selectedQuestions)
+                    {
+                        int check = 0;
+                        foreach (var qu in selectedTest.QUESTIONs)
+                        {
+                            if (q.QUESTION_ID == qu.QUESTION_ID)
+                            {
+                                check = 1;
+                                break;
+                            }
+                        }
+                        if (check == 0)
+                        {
+                            questions.Add(q);
+                        }
+                    }
+                    return questions;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ;
             }
         }
     }

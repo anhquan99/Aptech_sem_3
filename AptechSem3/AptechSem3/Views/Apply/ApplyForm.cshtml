@@ -1,9 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "ApplyForm";
+    ViewBag.Title = "Apply Form";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
-@model AptechSem3.Models.JOB_POST
+
 <style>
     .textAreaWraper {
         height: 150px;
@@ -41,75 +42,46 @@
                     </div>
                     <!-- form -->
                     <form action="@Url.Action("Apply","Apply")" class="contact-form" method="post">
-                        <div class="row ">
-                            <input type="hidden" name="@model.PERSONAL_ID" value="@ViewBag.person_id" />
-                            <input type="hidden" name="@model.PHONE" value="@ViewBag.phone" />
-                            <input type="hidden" name="@model.POST_ID" value="@ViewBag.postId" />
-                            @if (ViewBag.application != null)
-                            {
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Name" name="@model.NAME" value="@ViewBag.application.NAME" required="true">
-                                    </div>
+                        <div class="row">
+                            <input type="hidden" name="PHONE" value="@ViewBag.PHONE" />
+                            <input type="hidden" name="PERSONAL_ID" value="@ViewBag.PERSONAL_ID" />
+                            <input type="hidden" name="POST_ID" value="@ViewBag.POST_ID" />
+                            <div class="col-lg-6">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Name" name="NAME" required />
                                 </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Email" name="@model.MAIL" value="@ViewBag.application.MAIL" required="true">
-                                    </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Mail" name="MAIL" required />
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Address" name="@model.ADDRESS" value="@ViewBag.application.ADDRESS" required="true">
-                                    </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Address" name="ADDRESS" required />
                                 </div>
-                                <div class="col-lg-12">
-                                    <div class="input-form textAreaWraper">
-                                        <textarea class="textAreaStyle" placeholder="Education" name="@model.EDUCATION" required="true">@ViewBag.application.EDUCATION</textarea>
-                                    </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-form textAreaWraper">
+                                    <textarea class="textAreaStyle" placeholder="Education" name="EDUCATION" required></textarea>
+
                                 </div>
-                                <div class="col-lg-12 ">
-                                    <div class="input-form  textAreaWraper">
-                                        <textarea class="textAreaStyle" type="text" placeholder="Work experience" name="@model.WORK_EXP" required="true">@ViewBag.application.WORK_EXP</textarea>
-                                    </div>
+
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-form textAreaWraper">
+                                    <textarea class="textAreaStyle" placeholder="Work Experience" name="WORK_EXP" required></textarea>
                                 </div>
-                            }
-                            else
-                            {
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Name" name="@model.NAME" required="true" >
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-6">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Email" name="@model.MAIL" required="true" >
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-form">
-                                        <input type="text" placeholder="Address" name="@model.ADDRESS" required="true" >
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-form textAreaWraper">
-                                        <textarea class="textAreaStyle" placeholder="Education" name="@model.EDUCATION" required="true"></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12 ">
-                                    <div class="input-form  textAreaWraper">
-                                        <textarea class="textAreaStyle" type="text" placeholder="Work experience" name="@model.WORK_EXP" required="true"></textarea>
-                                    </div>
-                                </div>
-                            }
-                            <!-- Button -->
+                            </div>
                             <div class="col-lg-12">
                                 <button name="submit" class="submit-btn">APPLY</button>
                             </div>
+
                         </div>
+
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </section>
-

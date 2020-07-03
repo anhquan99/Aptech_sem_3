@@ -21,7 +21,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -40,14 +40,14 @@ namespace AptechSem3.Service.ModelService
                         db.RESULTs.Remove(selectedResult);
                         if (db.SaveChanges() == 0) throw new Exception();
                     }
-                    else throw new NotImplementedException();
+                    else throw new Exception();
                     return true;
 
                 }
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -67,7 +67,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -86,7 +86,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -125,7 +125,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -149,7 +149,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -173,7 +173,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         public List<RESULT> FindResultByTestId(int testId)
@@ -187,7 +187,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -215,9 +215,28 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
 
+        }
+
+        public bool deleteResultByApply(int applyId)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+
+                    var selectedResult = (from p in db.RESULTs where p.APPLY_ID == applyId select p).SingleOrDefault();
+                    db.RESULTs.Remove(selectedResult);
+                    if (db.SaveChanges() == 0) throw new Exception();
+                    else return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
 
 

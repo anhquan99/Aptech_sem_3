@@ -27,7 +27,7 @@
                         <div class="icon">
                             <i class="fas fa-users"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("ShowApplicationsWithCondition","Manager" , new { status ="attempt"})" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -42,7 +42,7 @@
                         <div class="icon">
                             <i class="fas fa-brain"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("ShowApplicationsWithCondition","Manager" , new { status ="high"})" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -57,7 +57,7 @@
                         <div class="icon">
                             <i class="far fa-thumbs-up"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("ShowApplicationsWithCondition","Manager" , new { status ="mid"})" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -72,7 +72,7 @@
                         <div class="icon">
                             <i class="far fa-thumbs-down"></i>
                         </div>
-                        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="@Url.Action("ShowApplicationsWithCondition","Manager" , new { status ="low"})" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
                 <!-- ./col -->
@@ -81,6 +81,135 @@
                 </div>
                 <div class="col-lg-6">
                     <canvas id="bar-chart-horizontal" width="800" height="450"></canvas>
+                </div>
+                <div class="col-sm-12 my-4">
+                    <h4 class="m-0 text-dark">Results of all User attended the test</h4>
+                </div>
+                <div class="col-lg-12 ">
+
+                    <div class="card">
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Test Id</th>
+                                        <th>Percent Finish</th>
+                                        <th>General Knowledge</th>
+                                        <th>Mathematics</th>
+                                        <th>Computer Technology</th>
+                                        <th>View Application</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.ResultList != null)
+                                    {
+                                        foreach (var result in ViewBag.ResultList)
+                                        {
+                                            string percent;
+                                            switch (result.TEST_INDEX)
+                                            {
+                                                case 1:
+                                                    percent = "General Knowledge";
+                                                    break;
+                                                case 2:
+                                                    percent = "Mathematics";
+                                                    break;
+                                                case 3:
+                                                    percent = "Computer Technolgy";
+                                                    break;
+                                                case 4:
+                                                    percent = "100% Finished";
+                                                    break;
+                                                default:
+                                                    percent = "Didn't Attend";
+                                                    break;
+                                            }
+                                            <tr>
+                                                <td>@result.TEST_ID</td>
+                                                <td>@percent</td>
+                                                <td>@result.TEST_RESULT_1</td>
+                                                <td>@result.TEST_RESULT_2</td>
+                                                <td>@result.TEST_RESULT_3</td>
+                                                <td><a href="@Url.Action("ApplicationDetail", "Manager", new { applyId = result.APPLY_ID})">Application Detail</a></td>
+
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-12 my-4">
+                    <h4 class="m-0 text-dark">Applications attended the test</h4>
+                </div>
+                <div class="col-lg-12 ">
+
+                    <div class="card">
+
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Post Id</th>
+                                        <th>Personal Id</th>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                        <th>Created</th>
+                                        <th>Status</th>
+                                        <th>More Detail</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.ApplicationList != null)
+                                    {
+                                        foreach (var application in ViewBag.ApplicationList)
+                                        {
+                                            string status;
+                                            switch (application.APPROVE_STATUS)
+                                            {
+                                                case -1:
+                                                    status = "Unapproved";
+                                                    break;
+                                                case 1:
+                                                    status = "Approved";
+                                                    break;
+                                                case 2:
+                                                    status = "Passed";
+                                                    break;
+                                                case -2:
+                                                    status = "Failed";
+                                                    break;
+                                                default:
+                                                    status = "Unseen";
+                                                    break;
+                                            }
+                                            <tr>
+                                                <td>@application.POST_ID</td>
+                                                <td>@application.PERSONAL_ID</td>
+                                                <td>@application.NAME</td>
+                                                <td>@application.ADDRESS</td>
+                                                <td>@application.PHONE</td>
+                                                <td>@application.CREATED</td>
+                                                <td>@status</td>
+                                                <td><a href="@Url.Action("ApplicationDetail", "Manager", new { applyId = application.APPLY_ID})">More Detail</a></td>
+
+
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
             

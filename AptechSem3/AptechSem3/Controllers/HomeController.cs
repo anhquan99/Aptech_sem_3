@@ -25,7 +25,14 @@ namespace AptechSem3.Controllers
         //login and logout
         public ActionResult Login()
         {
-            return View();
+            if (Session["username"] == null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
         }
         [HttpPost]
         public ActionResult postLogin(String username, String password)
@@ -34,8 +41,9 @@ namespace AptechSem3.Controllers
             {
                 UsrService service = new UsrService();
                 USR user = service.findById(username);
-                Console.WriteLine(user.ROLE);
-                String role = AccessService.Login(username, password);
+                if(user == null) return RedirectToAction("Login", "Home");
+                AccessService loginService = new AccessService();
+                String role = loginService.Login(username, password);
                 FormsAuthentication.SetAuthCookie(username, true);
                 Session["username"] = username;
                 if (role == "CANDIDATE")
@@ -45,7 +53,7 @@ namespace AptechSem3.Controllers
                 else if (role == "MANAGER")
                 {
                     
-                    return RedirectToAction("Index", "Default");
+                    return RedirectToAction("Index", "Manager");
                 }
                 else return RedirectToAction("Login", "Home");
             }
@@ -63,5 +71,7 @@ namespace AptechSem3.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        
     }
 }

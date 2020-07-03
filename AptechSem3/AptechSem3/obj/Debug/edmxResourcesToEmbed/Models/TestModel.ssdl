@@ -32,8 +32,8 @@
     <Property Name="POST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CREATED" Type="datetime" Nullable="false" />
     <Property Name="END_DATE" Type="datetime" Nullable="false" />
+    <Property Name="TITLE" Type="varchar" MaxLength="250" Nullable="false" />
     <Property Name="POST" Type="text" Nullable="false" />
-    <Property Name="TITLE" Type="varchar" MaxLength="250" />
   </EntityType>
   <EntityType Name="QUESTION">
     <Key>
@@ -225,6 +225,7 @@
   </Function>
   <Function Name="GET_LAST_QUESTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="GET_LAST_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_RESULT_WITH_APPLY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="APTECH_SEM_3ModelStoreContainer">
     <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JOB_APPLICATION" EntityType="Self.JOB_APPLICATION" Schema="dbo" store:Type="Tables" />

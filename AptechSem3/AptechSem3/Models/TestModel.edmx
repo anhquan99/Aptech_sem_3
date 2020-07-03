@@ -37,8 +37,8 @@
           <Property Name="POST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CREATED" Type="datetime" Nullable="false" />
           <Property Name="END_DATE" Type="datetime" Nullable="false" />
+          <Property Name="TITLE" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="POST" Type="text" Nullable="false" />
-          <Property Name="TITLE" Type="varchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="QUESTION">
           <Key>
@@ -230,6 +230,7 @@
         </Function>
         <Function Name="GET_LAST_QUESTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="GET_LAST_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GET_RESULT_WITH_APPLY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="APTECH_SEM_3ModelStoreContainer">
           <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JOB_APPLICATION" EntityType="Self.JOB_APPLICATION" Schema="dbo" store:Type="Tables" />
@@ -315,8 +316,8 @@
           <Property Name="POST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="POST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_POST" ToRole="JOB_APPLICATION" />
           <NavigationProperty Name="TESTs" Relationship="Self.TEST_POST" FromRole="JOB_POST" ToRole="TEST" />
         </EntityType>
@@ -528,6 +529,7 @@
           </FunctionImport>
           <FunctionImport Name="GET_LAST_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_QUESTION_Result)" />
           <FunctionImport Name="GET_LAST_TEST" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_TEST_Result)" />
+          <FunctionImport Name="GET_RESULT_WITH_APPLY" ReturnType="Collection(APTECH_SEM_3Model.GET_RESULT_WITH_APPLY_Result)" />
         </EntityContainer>
         <ComplexType Name="FIND_QUESTION_WITH_TEST_Result">
           <Property Type="Int32" Name="TEST_ID" Nullable="false" />
@@ -563,6 +565,15 @@
           <Property Type="DateTime" Name="END_TIME" Nullable="false" Precision="23" />
           <Property Type="String" Name="TEST_NAME" Nullable="false" MaxLength="250" />
           <Property Type="Int32" Name="TEST_ID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="GET_RESULT_WITH_APPLY_Result">
+          <Property Type="Int32" Name="APPLY_ID" Nullable="false" />
+          <Property Type="String" Name="NAME" Nullable="false" MaxLength="100" />
+          <Property Type="Int32" Name="APPROVE_STATUS" Nullable="false" />
+          <Property Type="Int32" Name="TEST_INDEX" Nullable="false" />
+          <Property Type="Double" Name="TEST_RESULT_1" Nullable="false" />
+          <Property Type="Double" Name="TEST_RESULT_2" Nullable="false" />
+          <Property Type="Double" Name="TEST_RESULT_3" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -603,8 +614,8 @@
                 <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
                 <ScalarProperty Name="CREATED" ColumnName="CREATED" />
                 <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
-                <ScalarProperty Name="POST" ColumnName="POST" />
                 <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+                <ScalarProperty Name="POST" ColumnName="POST" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -744,6 +755,19 @@
                 <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
                 <ScalarProperty Name="TEST_NAME" ColumnName="TEST_NAME" />
                 <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_RESULT_WITH_APPLY" FunctionName="APTECH_SEM_3Model.Store.GET_RESULT_WITH_APPLY">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_RESULT_WITH_APPLY_Result">
+                <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+                <ScalarProperty Name="TEST_INDEX" ColumnName="TEST_INDEX" />
+                <ScalarProperty Name="TEST_RESULT_1" ColumnName="TEST_RESULT_1" />
+                <ScalarProperty Name="TEST_RESULT_2" ColumnName="TEST_RESULT_2" />
+                <ScalarProperty Name="TEST_RESULT_3" ColumnName="TEST_RESULT_3" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Report Filter";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class=" col-md-12">
+                <canvas id="line-chart" width="800" height="450"></canvas>
+
+            </div>
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Reports</h3>
+
+                        
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Created</th>
+                                    <th>High Score Test</th>
+                                    <th>Average Score Test</th>
+                                    <th>Test Attempt</th>
+                                    <th>General Knowledge High Score</th>
+                                    <th>Mathematics High Score</th>
+                                    <th>Computer Technology High Score</th>
+                                    @if (ViewBag.type == "month")
+                                    {
+                                        <th>Detail</th>
+                                        <th>Update</th>
+                                    }
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ReportList != null)
+                                {
+                                    foreach (var report in ViewBag.ReportList)
+                                    {
+
+                                        <tr>
+                                            <td>@report.CREATED</td>
+                                            <td>@report.PERCENT_HIGH_SCORE.ToString("0.00") %</td>
+                                            <td>@report.PERCENT_MIDDLE_SCORE.ToString("0.00") %</td>
+                                            <td>@report.PERCENT_ATTEMPT.ToString("0.00") %</td>
+                                            <td>@report.PERCENT_HIGH_PART_1.ToString("0.00") %</td>
+                                            <td>@report.PERCENT_HIGH_PART_2.ToString("0.00") %</td>
+                                            <td>@report.PERCENT_HIGH_PART_3.ToString("0.00") %</td>
+                                            @if (ViewBag.type == "month")
+                                            {
+                                                <td><a href="@Url.Action("ReportDetail", "Manager", new { created = report.CREATED })">Detail</a></td>
+                                                <td><a href="@Url.Action("UpdateReport", "Manager", new { created = report.CREATED })">Update</a></td>
+                                            }
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+new Chart(document.getElementById("line-chart"), {
+  type: 'line',
+  data: {
+    labels: [@if (ViewBag.type == "year") {<text>1,2,3,4,5,6,7,8,9,10,11,12</text> }
+    else
+    {
+        int c = 1;
+        foreach (var r in ViewBag.ReportList)
+        {
+            <text>@r.CREATED.ToString("dd")</text>
+            if (c != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    c++;
+                    }
+        }
+    }],
+    datasets: [{
+        data: [@{
+                int i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_ATTEMPT</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Attempt",
+        borderColor: "#3e95cd",
+        fill: false
+      },{
+        data: [@{
+                i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_HIGH_SCORE</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Percent High Score",
+        borderColor: "#8e5ea2",
+        fill: false
+      },{
+        data: [@{
+                i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_MIDDLE_SCORE</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Percent Mid Score",
+        borderColor: "#3cba9f",
+        fill: false
+      },{
+        data: [@{
+                i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_HIGH_PART_1</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Percent High GK",
+        borderColor: "#e8c3b9",
+        fill: false
+      },{
+        data: [@{
+                i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_HIGH_PART_2</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Percent High M",
+        borderColor: "#c45850",
+        fill: false
+      },{
+        data: [@{
+                i = 1;
+                foreach (var r in ViewBag.ReportList)
+                {
+            <text>@r.PERCENT_HIGH_PART_3</text>
+                    if (i != ViewBag.ReportList.Count)
+                    {
+                    <text>,</text>
+                    i++;
+                    }
+                }
+            }],
+        label: "Percent High CT",
+        borderColor: "#d32648",
+        fill: false
+      }
+    ]
+  },
+  options: {
+    title: {
+      display: true,
+      text: 'Report by @ViewBag.year @ViewBag.month'
+    }
+  }
+});
+</script>

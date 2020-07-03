@@ -34,8 +34,8 @@
           <ScalarProperty Name="POST_ID" ColumnName="POST_ID" />
           <ScalarProperty Name="CREATED" ColumnName="CREATED" />
           <ScalarProperty Name="END_DATE" ColumnName="END_DATE" />
-          <ScalarProperty Name="POST" ColumnName="POST" />
           <ScalarProperty Name="TITLE" ColumnName="TITLE" />
+          <ScalarProperty Name="POST" ColumnName="POST" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -175,6 +175,19 @@
           <ScalarProperty Name="END_TIME" ColumnName="END_TIME" />
           <ScalarProperty Name="TEST_NAME" ColumnName="TEST_NAME" />
           <ScalarProperty Name="TEST_ID" ColumnName="TEST_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GET_RESULT_WITH_APPLY" FunctionName="APTECH_SEM_3Model.Store.GET_RESULT_WITH_APPLY">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="APTECH_SEM_3Model.GET_RESULT_WITH_APPLY_Result">
+          <ScalarProperty Name="APPLY_ID" ColumnName="APPLY_ID" />
+          <ScalarProperty Name="NAME" ColumnName="NAME" />
+          <ScalarProperty Name="APPROVE_STATUS" ColumnName="APPROVE_STATUS" />
+          <ScalarProperty Name="TEST_INDEX" ColumnName="TEST_INDEX" />
+          <ScalarProperty Name="TEST_RESULT_1" ColumnName="TEST_RESULT_1" />
+          <ScalarProperty Name="TEST_RESULT_2" ColumnName="TEST_RESULT_2" />
+          <ScalarProperty Name="TEST_RESULT_3" ColumnName="TEST_RESULT_3" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

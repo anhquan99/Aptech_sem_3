@@ -21,7 +21,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -45,7 +45,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -60,7 +60,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw;
             }
         }
 
@@ -77,7 +77,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -105,8 +105,36 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
+        }
+
+        public List<JOB_POST> getPostNotCreated()
+        {
+            List<JOB_POST> posts = new List<JOB_POST>();
+            using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+            {
+                TestService testService = new TestService();
+                foreach (var post in this.findAll())
+                {
+                    int check = 0;
+                    foreach (var test in testService.findAll())
+                    {
+                        if (test.POST_ID == post.POST_ID)
+                        {
+                            check = 1;
+                            break;
+                        }
+                    }
+                    if (check == 0)
+                    {
+                        posts.Add(post);
+                    }
+                }
+
+                return posts;
+            }
+
         }
 
 

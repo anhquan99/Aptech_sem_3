@@ -21,7 +21,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                return false;
             }
         }
 
@@ -44,7 +44,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -59,7 +59,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -75,7 +75,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
 
@@ -102,7 +102,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         public USR findByUsernameAndPassword(String username, String password)
@@ -118,7 +118,7 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
             }
         }
         public bool findByApplyId(string applyId)
@@ -134,7 +134,38 @@ namespace AptechSem3.Service.ModelService
             }
             catch (Exception ex)
             {
-                throw new NotImplementedException();
+                throw ;
+            }
+        }
+        public USR findReportByApplyId(string applyId)
+        {
+            try
+            {
+                int id = Int32.Parse(applyId);
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    return (from p in db.USRs where p.APPLY_ID == id select p).SingleOrDefault();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+        public List<USR> findByRole(string role)
+        {
+            try
+            {
+                using (APTECH_SEM_3Entities db = new APTECH_SEM_3Entities())
+                {
+                    return (from p in db.USRs where p.ROLE == role select p).ToList();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw;
             }
         }
     }

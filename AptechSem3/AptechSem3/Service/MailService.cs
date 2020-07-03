@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace AptechSem3.Service
@@ -78,6 +79,12 @@ namespace AptechSem3.Service
             {
                 //get path to json directory
                 string startupPath = Path.GetFullPath(Path.Combine(path, @"token.json"));
+                //delete all files
+                DirectoryInfo files = new DirectoryInfo(startupPath);
+                foreach(var i in files.GetFiles())
+                {
+                    i.Delete();
+                }
                 //delete directory where user google account is saved
                 Directory.Delete(startupPath);
                 //create json dir again
@@ -102,5 +109,22 @@ namespace AptechSem3.Service
                 throw;
             }
         } 
+        public void sendMailWithTimeOut(String toAddress, String subject, String Content)
+        {
+            var task = Task.Run(() => sendMail(toAddress, subject, Content));
+            if (task.Wait(TimeSpan.FromSeconds(60)))
+                return;
+            else
+                throw new Exception("Timed out");
+        }
+        public void changeMailWithTimeOut()
+        {
+            var task = Task.Run(() => changeMail());
+            if (task.Wait(TimeSpan.FromSeconds(60)))
+                return;
+            else
+                throw new Exception("Timed out");
+
+        }
     }
 }

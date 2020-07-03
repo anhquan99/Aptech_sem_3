@@ -8,7 +8,7 @@ namespace AptechSem3.Service
 {
     public class AccessService
     {
-        public static String Login(String username, String password)
+        public String Login(String username, String password)
         {
             UsrService service = new UsrService();
             USR usr = service.findByUsernameAndPassword(username, password);

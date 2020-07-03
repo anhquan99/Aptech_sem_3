@@ -56,7 +56,10 @@
                         <input class="input100" type="password" name="password" placeholder="Enter password">
                         <span class="focus-input100"></span>
                     </div>
-
+                    @if( ViewBag.link != null)
+                    {
+                        <p style="color:red">@ViewBag.link</p>
+                    }
                     <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Login
