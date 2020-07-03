@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewBag.Title = "Update Post";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+    AptechSem3.Models.JOB_POST post = null;
+    if (TempData["Post"] != null)
+    {
+        post = (AptechSem3.Models.JOB_POST)TempData["Post"];
+    }
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Create a Job Post</h3>
+                    </div>
+                    <form action="@Url.Action("UpdatePostDB","Manager")" method="post">
+                        <div class="card-body">
+
+                            <!-- Job Post -->
+                            <div class="form-group">
+                                <label>Job Title</label>
+                                <input type="text" class="form-control" name="TITLE" placeholder="Enter Title..." value="@post.TITLE" required>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label>Job Description</label>
+                                <textarea class="form-control" rows="3" name="POST" placeholder="Enter Job Discription..." style="margin-top: 0px; margin-bottom: 0px; height: 91px;" required>@post.POST</textarea>
+                            </div>
+                            <input type="text" class="form-control" name="POST_ID" placeholder="Enter Title..." value="@post.POST_ID" hidden>
+
+                            <input type="datetime-local" class="form-control" name="CREATED" placeholder="dd/MM/yyyy" value="@post.CREATED.ToString("yyyy'-'MM'-'dd'T'HH':'mm")" hidden>
+                            <div class="form-group">
+                                <label>Created</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="datetime-local" class="form-control" placeholder="dd/MM/yyyy" value="@post.CREATED.ToString("yyyy'-'MM'-'dd'T'HH':'mm")" disabled>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>End Date</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                    </div>
+                                    <input type="datetime-local" class="form-control" name="END_DATE" placeholder="dd/MM/yyyy" value="@post.END_DATE.ToString("yyyy'-'MM'-'dd'T'HH':'mm")">
+                                </div>
+                            </div>
+
+                            <!-- /.form group -->
+                        </div>
+                        <lable class="col-sm-12 text-danger">
+                            @ViewBag.Error
+
+                        </lable>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <div class="col-sm-2">
+                                <input type="submit" class="btn btn-primary" value="Submit" />
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+

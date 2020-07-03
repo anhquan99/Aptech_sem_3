@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{38ADCEAD-C07D-4D11-B141-496798FD1E3D}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AptechSem3</RootNamespace>
+    <AssemblyName>AptechSem3</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.45.0\lib\net45\Google.Apis.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.45.0\lib\net45\Google.Apis.Auth.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Auth.PlatformServices, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Auth.1.45.0\lib\net45\Google.Apis.Auth.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Core, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Core.1.45.0\lib\net45\Google.Apis.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.Gmail.v1, Version=1.45.0.1927, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.Gmail.v1.1.45.0.1927\lib\net45\Google.Apis.Gmail.v1.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Apis.PlatformServices, Version=1.45.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
+      <HintPath>..\packages\Google.Apis.1.45.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ApplyController.cs" />
+    <Compile Include="Controllers\bgController.cs" />
+    <Compile Include="Controllers\CustomRoleProvider.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ManagerController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ANSWER.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CustomApplication.cs" />
+    <Compile Include="Models\CustomJobPost.cs" />
+    <Compile Include="Models\FIND_QUESTION_WITH_TEST_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FIND_USR_BY_TEST_END_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_1_RANDOM_QUESTION_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_2_RANDOM_QUESTIONS_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LAST_QUESTION_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LAST_TEST_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_RESULT_WITH_APPLY_Result.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JOB_APPLICATION.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\JOB_POST.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QUESTION.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\REPORT.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RESULT.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TEST.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TestQuestion.cs" />
+    <Compile Include="Models\USR.cs">
+      <DependentUpon>TestModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\AccessService.cs" />
+    <Compile Include="Service\CandidateService.cs" />
+    <Compile Include="Service\ICRUD.cs" />
+    <Compile Include="Service\JobApplicationService.cs" />
+    <Compile Include="Service\JobPostService.cs" />
+    <Compile Include="Service\MailService.cs" />
+    <Compile Include="Service\ModelService\AnswerService.cs" />
+    <Compile Include="Service\ModelService\ApplicationService.cs" />
+    <Compile Include="Service\ModelService\IService.cs" />
+    <Compile Include="Service\ModelService\PostService.cs" />
+    <Compile Include="Service\ModelService\QuestionService.cs" />
+    <Compile Include="Service\ModelService\ReportService.cs" />
+    <Compile Include="Service\ModelService\ResultService.cs" />
+    <Compile Include="Service\ModelService\TestService.cs" />
+    <Compile Include="Service\ModelService\UserService.cs" />
+    <Compile Include="Service\TestService.cs" />
+    <Compile Include="Service\UsrService.cs" />
+    <Compile Include="Validate\JobApplicationValidation.cs" />
+    <Compile Include="Validate\TextValidation.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\CandidateWeb\assets\css\animate.min.css" />
+    <Content Include="Content\CandidateWeb\assets\css\bootstrap.min.css" />
+    <Content Include="Content\CandidateWeb\assets\css\flaticon.css" />
+    <Content Include="Content\CandidateWeb\assets\css\fontawesome-all.min.css" />
+    <Content Include="Content\CandidateWeb\assets\css\magnific-popup.css" />
+    <Content Include="Content\CandidateWeb\assets\css\main.css" />
+    <Content Include="Content\CandidateWeb\assets\css\nice-select.css" />
+    <Content Include="Content\CandidateWeb\assets\css\owl.carousel.min.css" />
+    <Content Include="Content\CandidateWeb\assets\css\price_rangs.css" />
+    <Content Include="Content\CandidateWeb\assets\css\responsive.css" />
+    <Content Include="Content\CandidateWeb\assets\css\slick.css" />
+    <Content Include="Content\CandidateWeb\assets\css\slicknav.css" />
+    <Content Include="Content\CandidateWeb\assets\css\style.css" />
+    <Content Include="Content\CandidateWeb\assets\css\themify-icons.css" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-brands-400.svg" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-regular-400.svg" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-solid-900.svg" />
+    <Content Include="Content\CandidateWeb\assets\fonts\flaticon.html" />
+    <Content Include="Content\CandidateWeb\assets\fonts\Flaticon.svg" />
+    <Content Include="Content\CandidateWeb\assets\fonts\themify.svg" />
+    <Content Include="Content\CandidateWeb\assets\img\about\about_lft.png" />
+    <Content Include="Content\CandidateWeb\assets\img\about\about_right.png" />
+    <Content Include="Content\CandidateWeb\assets\img\about\pet_care.png" />
+    <Content Include="Content\CandidateWeb\assets\img\adapt_icon\1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\adapt_icon\1.svg" />
+    <Content Include="Content\CandidateWeb\assets\img\adapt_icon\2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\adapt_icon\3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\banner\dog.png" />
+    <Content Include="Content\CandidateWeb\assets\img\banner\img.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\author.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\learn_about_bg.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\single_blog_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\single_blog_2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\single_blog_3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\single_blog_4.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\single_blog_5.png" />
+    <Content Include="Content\CandidateWeb\assets\img\blog\slide_thumb_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\comment\comment_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\comment\comment_2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\comment\comment_3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\a.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\a2.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\d.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\disabled-check.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\disabled-radio.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f1.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f2.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f3.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f4.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f5.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f6.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f7.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\f8.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g1.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g2.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g3.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g4.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g5.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g6.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g7.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\g8.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\primary-check.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\primary-radio.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\success-check.png" />
+    <Content Include="Content\CandidateWeb\assets\img\elements\success-radio.png" />
+    <Content Include="Content\CandidateWeb\assets\img\favicon.ico" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\about2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\blog01.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\blog02.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\blog1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\footer_bg.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\Homepage_testi.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\section_bg02.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\section_bg04.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\shape1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\t1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\team1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\team2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\gallery\team3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\hero\about.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\hero\h1_hero.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\logo\loder.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\logo\logo.png" />
+    <Content Include="Content\CandidateWeb\assets\img\logo\logo2_footer.png" />
+    <Content Include="Content\CandidateWeb\assets\img\logo\select-items-icon.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\our_blog\blog-img1.jpg" />
+    <Content Include="Content\CandidateWeb\assets\img\post\next.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_10.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_4.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_5.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_6.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_7.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_8.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\post_9.png" />
+    <Content Include="Content\CandidateWeb\assets\img\post\preview.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\10.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\4.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\5.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\6.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\7.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\8.png" />
+    <Content Include="Content\CandidateWeb\assets\img\prising\9.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\service_icon_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\service_icon_2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\service_icon_3.png" />
+    <Content Include="Content\CandidateWeb\assets\img\service\service_icon_bg_1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\team\1.png" />
+    <Content Include="Content\CandidateWeb\assets\img\team\2.png" />
+    <Content Include="Content\CandidateWeb\assets\img\team\3.png" />
+    <Content Include="Content\CandidateWeb\assets\js\animated.headline.js" />
+    <Content Include="Content\CandidateWeb\assets\js\bootstrap.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\contact.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.ajaxchimp.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.form.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.magnific-popup.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.nice-select.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.paroller.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.slicknav.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.sticky.js" />
+    <Content Include="Content\CandidateWeb\assets\js\jquery.validate.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\mail-script.js" />
+    <Content Include="Content\CandidateWeb\assets\js\main.js" />
+    <Content Include="Content\CandidateWeb\assets\js\one-page-nav-min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\owl.carousel.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\plugins.js" />
+    <Content Include="Content\CandidateWeb\assets\js\popper.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\price-range.js" />
+    <Content Include="Content\CandidateWeb\assets\js\slick.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\vendor\jquery-1.12.4.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\vendor\modernizr-3.5.0.min.js" />
+    <Content Include="Content\CandidateWeb\assets\js\wow.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\css\main.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\css\util.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\css\font-awesome.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\css\font-awesome.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\HELP-US-OUT.txt" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\icon-font.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.svg" />
+    <Content Include="Content\CandidateWeb\Login_v15\images\bg-01.jpg" />
+    <Content Include="Content\CandidateWeb\Login_v15\images\icons\favicon.ico" />
+    <Content Include="Content\CandidateWeb\Login_v15\images\icons\map-marker.png" />
+    <Content Include="Content\CandidateWeb\Login_v15\index.html" />
+    <Content Include="Content\CandidateWeb\Login_v15\js\main.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\js\map-custom.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\animate\animate.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\animsition\css\animsition.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\animsition\css\animsition.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\animsition\js\animsition.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\animsition\js\animsition.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\js\popper.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\js\popper.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\js\tooltip.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\countdowntime\countdowntime.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\css-hamburgers\hamburgers.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\css-hamburgers\hamburgers.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\daterangepicker\daterangepicker.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\daterangepicker\daterangepicker.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\daterangepicker\moment.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\daterangepicker\moment.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\jquery\jquery-3.2.1.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\perfect-scrollbar\perfect-scrollbar.min.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.js" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.min.css" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\select2\select2.min.js" />
+    <Content Include="Content\css\adminlte.min.css" />
+    <Content Include="Content\css\all.css" />
+    <Content Include="Content\css\all.min.css" />
+    <Content Include="Content\css\Chart.css" />
+    <Content Include="Content\css\Chart.min.css" />
+    <Content Include="Content\css\daterangepicker.css" />
+    <Content Include="Content\css\fontawesome.css" />
+    <Content Include="Content\img\AdminLTELogo.png" />
+    <Content Include="Content\img\user2-160x160.jpg" />
+    <Content Include="Content\js\adminlte.js" />
+    <Content Include="Content\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\js\daterangepicker.js" />
+    <Content Include="Content\js\jquery.inputmask.bundle.min.js" />
+    <Content Include="Content\js\jquery.min.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\TestModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TestModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TestModel.edmx</DependentUpon>
+      <LastGenOutput>TestModel.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\CandidateWeb\assets\css\style.map" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-brands-400.eot" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-brands-400.ttf" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-brands-400.woff" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-brands-400.woff2" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-regular-400.eot" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-regular-400.ttf" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-regular-400.woff" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-regular-400.woff2" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-solid-900.eot" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-solid-900.ttf" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-solid-900.woff" />
+    <Content Include="Content\CandidateWeb\assets\fonts\fa-solid-900.woff2" />
+    <Content Include="Content\CandidateWeb\assets\fonts\Flaticon.eot" />
+    <Content Include="Content\CandidateWeb\assets\fonts\Flaticon.ttf" />
+    <Content Include="Content\CandidateWeb\assets\fonts\Flaticon.woff" />
+    <Content Include="Content\CandidateWeb\assets\fonts\Flaticon.woff2" />
+    <Content Include="Content\CandidateWeb\assets\fonts\themify.eot" />
+    <Content Include="Content\CandidateWeb\assets\fonts\themify.ttf" />
+    <Content Include="Content\CandidateWeb\assets\fonts\themify.woff" />
+    <Content Include="Content\CandidateWeb\assets\fonts\_flaticon.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\style.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_about.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_blog_page.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_bradcam.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_categories.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_color.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_common.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_contact-form.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_contact.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_elements.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_extend.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_footer.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_h1-hero.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_headerMenu.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_mixins.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_our-info.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_overlay.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_pagination.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_services.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_services_section.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_team.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_testimonial.scss" />
+    <Content Include="Content\CandidateWeb\assets\scss\_variables.scss" />
+    <Content Include="credentials.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\fonts\FontAwesome.otf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\animated.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\bordered-pulled.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\core.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\fixed-width.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\font-awesome.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\icons.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\larger.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\list.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\mixins.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\path.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\rotated-flipped.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\screen-reader.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\stacked.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\less\variables.less" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\font-awesome.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_animated.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_bordered-pulled.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_core.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_fixed-width.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_icons.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_larger.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_list.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_mixins.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_path.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_rotated-flipped.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_screen-reader.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_stacked.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\font-awesome-4.7.0\scss\_variables.scss" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.eot" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\Linearicons-Free-v1.0.0\WebFont\Linearicons-Free.woff2" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Black.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-BlackItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Bold.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-BoldItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-ExtraBold.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-ExtraLight.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Italic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Light.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-LightItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Medium.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-MediumItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Regular.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-SemiBold.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-Thin.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\fonts\poppins\Poppins-ThinItalic.ttf" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\CandidateWeb\Login_v15\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <EntityDeploy Include="Models\TestModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TestModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TestModel.edmx.diagram">
+      <DependentUpon>TestModel.edmx</DependentUpon>
+    </Content>
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\BlankLayout.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Apply\ApplyForId.cshtml" />
+    <Content Include="Views\Apply\Apply.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\JobPost.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Test\DoTest.cshtml" />
+    <Content Include="Views\Test\Submit.cshtml" />
+    <Content Include="Views\Test\finished.cshtml" />
+    <Content Include="Views\bg\Index.cshtml" />
+    <Content Include="Views\Shared\ManagerLayout.cshtml" />
+    <Content Include="Views\Manager\ApplicationDetail.cshtml" />
+    <Content Include="Views\Manager\CreatePost.cshtml" />
+    <Content Include="Views\Manager\CreateQA.cshtml" />
+    <Content Include="Views\Manager\CreateTest.cshtml" />
+    <Content Include="Views\Manager\Index.cshtml" />
+    <Content Include="Views\Manager\ReportDetail.cshtml" />
+    <Content Include="Views\Manager\ShowAnswers.cshtml" />
+    <Content Include="Views\Manager\ShowApplications.cshtml" />
+    <Content Include="Views\Manager\ShowCandidates.cshtml" />
+    <Content Include="Views\Manager\ShowPosts.cshtml" />
+    <Content Include="Views\Manager\ShowQuestions.cshtml" />
+    <Content Include="Views\Manager\ShowTestQuestions.cshtml" />
+    <Content Include="Views\Manager\ShowTests.cshtml" />
+    <Content Include="Views\Manager\UpdateAnswer.cshtml" />
+    <Content Include="Views\Manager\UpdatePost.cshtml" />
+    <Content Include="Views\Manager\UpdateQuestion.cshtml" />
+    <Content Include="Views\Manager\UpdateTest.cshtml" />
+    <Content Include="Views\Manager\ReportFilter.cshtml" />
+    <Content Include="Views\Manager\ShowStatusCandidates.cshtml" />
+    <Content Include="Views\Apply\ApplyForm.cshtml" />
+    <Content Include="Views\Apply\UpdateForm.cshtml" />
+    <Content Include="Views\Manager\CreateQAToTest.cshtml" />
+    <Content Include="Views\Manager\AddExistedQuestion.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>57546</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:57546/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

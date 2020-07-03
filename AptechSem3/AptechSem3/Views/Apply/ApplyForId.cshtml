@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "ApplyForId";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .textAreaWraper {
+        height: 150px;
+        margin-bottom: 20px;
+    }
+
+    .textAreaStyle {
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #efebeb;
+        font-size: 18px;
+        font-weight: 400;
+        padding: 9px 33px 9px 32px;
+        color: #777777;
+        font-size: 18px;
+        font-weight: 400;
+    }
+</style>
+<section class="contact-form-area section-bg  pt-115 pb-120 fix" data-background="/Content/CandidateWeb/assets/img/gallery/section_bg02.jpg" style="background-image: url(&quot;/Content/CandidateWeb/assets/img/gallery/section_bg02.jpg&quot;); padding-bottom: 9%;padding-top: 23%;">
+    <div class="container">
+        <div class="row justify-content-end">
+            <!-- Contact wrapper -->
+            <div class="col-xl-8 col-lg-9">
+                <div class="contact-form-wrapper">
+                    <!-- From tittle -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <!-- Section Tittle -->
+                            <div class="section-tittle mb-50">
+                                <h2>Apply for job</h2>
+                                <p>Join us for your future</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- form -->
+                    <form action="@Url.Action("ApplyForm","Apply")" class="contact-form" method="post">
+                        <input type="hidden" name="postId" value="@ViewBag.postId"/>
+                        <div class="row ">
+                            <div class="col-lg-12">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Personal ID" name="PERSONAL_ID" pattern="[0-9]\d+" maxlength="13" minlength="10" required="true" title="Number only">
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="input-form">
+                                    <input type="text" placeholder="Phone" name="PHONE" pattern="[0-9]\d+" maxlength="13" minlength="10" required="true" title="Number only">
+                                </div>
+                            </div>
+                            <!-- Button -->
+                            <div class="col-lg-12">
+                                <button name="submit" class="submit-btn">APPLY</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

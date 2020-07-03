@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APTECH_SEM_3Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ANSWER">
+    <Key>
+      <PropertyRef Name="ANSWER_ID" />
+    </Key>
+    <Property Name="ANSWER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QUESTION_ID" Type="Int32" Nullable="false" />
+    <Property Name="ANSWER1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="STATUS" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="QUESTION" Relationship="Self.ANSWER_QUESTION" FromRole="ANSWER" ToRole="QUESTION" />
+  </EntityType>
+  <EntityType Name="JOB_APPLICATION">
+    <Key>
+      <PropertyRef Name="APPLY_ID" />
+    </Key>
+    <Property Name="APPLY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POST_ID" Type="Int32" Nullable="false" />
+    <Property Name="PERSONAL_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ADDRESS" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PHONE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MAIL" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EDUCATION" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WORK_EXP" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="APPROVE_STATUS" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="JOB_POST" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_APPLICATION" ToRole="JOB_POST" />
+    <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_APPLICATION" FromRole="JOB_APPLICATION" ToRole="RESULT" />
+    <NavigationProperty Name="USRs" Relationship="Self.USRS_JOB_APPLICATION" FromRole="JOB_APPLICATION" ToRole="USR" />
+  </EntityType>
+  <EntityType Name="JOB_POST">
+    <Key>
+      <PropertyRef Name="POST_ID" />
+    </Key>
+    <Property Name="POST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="END_DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TITLE" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="POST" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.JOB_APPLICATION_JOB_POST" FromRole="JOB_POST" ToRole="JOB_APPLICATION" />
+    <NavigationProperty Name="TESTs" Relationship="Self.TEST_POST" FromRole="JOB_POST" ToRole="TEST" />
+  </EntityType>
+  <EntityType Name="QUESTION">
+    <Key>
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="CATEGORY" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="QUESTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QUESTION1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="POINT" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ANSWERs" Relationship="Self.ANSWER_QUESTION" FromRole="QUESTION" ToRole="ANSWER" />
+    <NavigationProperty Name="TESTs" Relationship="Self.TEST_QUESTION" FromRole="QUESTION" ToRole="TEST" />
+  </EntityType>
+  <EntityType Name="REPORT">
+    <Key>
+      <PropertyRef Name="CREATED" />
+    </Key>
+    <Property Name="CREATED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PERCENT_HIGH_SCORE" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_MIDDLE_SCORE" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_ATTEMPT" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_FAST_FINISH" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_1" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_1" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_2" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_2" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_3" Type="Double" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_3" Type="Double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESULT">
+    <Key>
+      <PropertyRef Name="APPLY_ID" />
+      <PropertyRef Name="TEST_ID" />
+    </Key>
+    <Property Name="APPLY_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEST_ID" Type="Int32" Nullable="false" />
+    <Property Name="TEST_INDEX" Type="Int32" Nullable="false" />
+    <Property Name="TEST_RESULT_1" Type="Double" Nullable="false" />
+    <Property Name="TEST_RESULT_2" Type="Double" Nullable="false" />
+    <Property Name="TEST_RESULT_3" Type="Double" Nullable="false" />
+    <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.RESULT_APPLICATION" FromRole="RESULT" ToRole="JOB_APPLICATION" />
+    <NavigationProperty Name="TEST" Relationship="Self.RESULT_TEST" FromRole="RESULT" ToRole="TEST" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TEST">
+    <Key>
+      <PropertyRef Name="TEST_ID" />
+    </Key>
+    <Property Name="POST_ID" Type="Int32" Nullable="false" />
+    <Property Name="START_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="END_TIME" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TEST_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="TEST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="JOB_POST" Relationship="Self.TEST_POST" FromRole="TEST" ToRole="JOB_POST" />
+    <NavigationProperty Name="RESULTs" Relationship="Self.RESULT_TEST" FromRole="TEST" ToRole="RESULT" />
+    <NavigationProperty Name="QUESTIONs" Relationship="Self.TEST_QUESTION" FromRole="TEST" ToRole="QUESTION" />
+  </EntityType>
+  <EntityType Name="USR">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="APPLY_ID" Type="Int32" />
+    <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ROLE" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="JOB_APPLICATION" Relationship="Self.USRS_JOB_APPLICATION" FromRole="USR" ToRole="JOB_APPLICATION" />
+  </EntityType>
+  <Association Name="ANSWER_QUESTION">
+    <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+    <End Role="ANSWER" Type="Self.ANSWER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTION">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="ANSWER">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JOB_APPLICATION_JOB_POST">
+    <End Role="JOB_POST" Type="Self.JOB_POST" Multiplicity="1" />
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_POST">
+        <PropertyRef Name="POST_ID" />
+      </Principal>
+      <Dependent Role="JOB_APPLICATION">
+        <PropertyRef Name="POST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RESULT_APPLICATION">
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="1" />
+    <End Role="RESULT" Type="Self.RESULT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_APPLICATION">
+        <PropertyRef Name="APPLY_ID" />
+      </Principal>
+      <Dependent Role="RESULT">
+        <PropertyRef Name="APPLY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRS_JOB_APPLICATION">
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="0..1" />
+    <End Role="USR" Type="Self.USR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_APPLICATION">
+        <PropertyRef Name="APPLY_ID" />
+      </Principal>
+      <Dependent Role="USR">
+        <PropertyRef Name="APPLY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_POST">
+    <End Role="JOB_POST" Type="Self.JOB_POST" Multiplicity="1" />
+    <End Role="TEST" Type="Self.TEST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_POST">
+        <PropertyRef Name="POST_ID" />
+      </Principal>
+      <Dependent Role="TEST">
+        <PropertyRef Name="POST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RESULT_TEST">
+    <End Role="TEST" Type="Self.TEST" Multiplicity="1" />
+    <End Role="RESULT" Type="Self.RESULT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEST">
+        <PropertyRef Name="TEST_ID" />
+      </Principal>
+      <Dependent Role="RESULT">
+        <PropertyRef Name="TEST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_QUESTION">
+    <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="*" />
+    <End Role="TEST" Type="Self.TEST" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="APTECH_SEM_3Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ANSWERs" EntityType="Self.ANSWER" />
+    <EntitySet Name="JOB_APPLICATION" EntityType="Self.JOB_APPLICATION" />
+    <EntitySet Name="JOB_POST" EntityType="Self.JOB_POST" />
+    <EntitySet Name="QUESTIONs" EntityType="Self.QUESTION" />
+    <EntitySet Name="REPORTs" EntityType="Self.REPORT" />
+    <EntitySet Name="RESULTs" EntityType="Self.RESULT" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TESTs" EntityType="Self.TEST" />
+    <EntitySet Name="USRs" EntityType="Self.USR" />
+    <AssociationSet Name="ANSWER_QUESTION" Association="Self.ANSWER_QUESTION">
+      <End Role="QUESTION" EntitySet="QUESTIONs" />
+      <End Role="ANSWER" EntitySet="ANSWERs" />
+    </AssociationSet>
+    <AssociationSet Name="JOB_APPLICATION_JOB_POST" Association="Self.JOB_APPLICATION_JOB_POST">
+      <End Role="JOB_POST" EntitySet="JOB_POST" />
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="RESULT_APPLICATION" Association="Self.RESULT_APPLICATION">
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+      <End Role="RESULT" EntitySet="RESULTs" />
+    </AssociationSet>
+    <AssociationSet Name="USRS_JOB_APPLICATION" Association="Self.USRS_JOB_APPLICATION">
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+      <End Role="USR" EntitySet="USRs" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_POST" Association="Self.TEST_POST">
+      <End Role="JOB_POST" EntitySet="JOB_POST" />
+      <End Role="TEST" EntitySet="TESTs" />
+    </AssociationSet>
+    <AssociationSet Name="RESULT_TEST" Association="Self.RESULT_TEST">
+      <End Role="TEST" EntitySet="TESTs" />
+      <End Role="RESULT" EntitySet="RESULTs" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_QUESTION" Association="Self.TEST_QUESTION">
+      <End Role="QUESTION" EntitySet="QUESTIONs" />
+      <End Role="TEST" EntitySet="TESTs" />
+    </AssociationSet>
+    <FunctionImport Name="FIND_QID_FROM_USERNAME" ReturnType="Collection(Int32)">
+      <Parameter Name="USERNAME" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="FIND_QUESTION_WITH_TEST" ReturnType="Collection(APTECH_SEM_3Model.FIND_QUESTION_WITH_TEST_Result)">
+      <Parameter Name="TEST_ID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="FIND_USR_BY_TEST_END" ReturnType="Collection(APTECH_SEM_3Model.FIND_USR_BY_TEST_END_Result)">
+      <Parameter Name="TIME1" Mode="In" Type="DateTime" />
+      <Parameter Name="TIME2" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="GET_1_RANDOM_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_1_RANDOM_QUESTION_Result)">
+      <Parameter Name="CATEGORY" Mode="In" Type="String" />
+      <Parameter Name="POINT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_2_RANDOM_QUESTIONS" ReturnType="Collection(APTECH_SEM_3Model.GET_2_RANDOM_QUESTIONS_Result)">
+      <Parameter Name="CATEGORY" Mode="In" Type="String" />
+      <Parameter Name="POINT" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="GET_LAST_QUESTION" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_QUESTION_Result)" />
+    <FunctionImport Name="GET_LAST_TEST" ReturnType="Collection(APTECH_SEM_3Model.GET_LAST_TEST_Result)" />
+    <FunctionImport Name="GET_RESULT_WITH_APPLY" ReturnType="Collection(APTECH_SEM_3Model.GET_RESULT_WITH_APPLY_Result)" />
+  </EntityContainer>
+  <ComplexType Name="FIND_QUESTION_WITH_TEST_Result">
+    <Property Type="Int32" Name="TEST_ID" Nullable="false" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="FIND_USR_BY_TEST_END_Result">
+    <Property Type="Int32" Name="APPLY_ID" Nullable="true" />
+    <Property Type="String" Name="USERNAME" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="PASSWORD" Nullable="false" MaxLength="100" />
+    <Property Type="String" Name="ROLE" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="GET_1_RANDOM_QUESTION_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_2_RANDOM_QUESTIONS_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_LAST_QUESTION_Result">
+    <Property Type="String" Name="CATEGORY" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="QUESTION_ID" Nullable="false" />
+    <Property Type="String" Name="QUESTION" Nullable="false" MaxLength="Max" />
+    <Property Type="Int32" Name="POINT" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_LAST_TEST_Result">
+    <Property Type="Int32" Name="POST_ID" Nullable="false" />
+    <Property Type="DateTime" Name="START_TIME" Nullable="false" Precision="23" />
+    <Property Type="DateTime" Name="END_TIME" Nullable="false" Precision="23" />
+    <Property Type="String" Name="TEST_NAME" Nullable="false" MaxLength="250" />
+    <Property Type="Int32" Name="TEST_ID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="GET_RESULT_WITH_APPLY_Result">
+    <Property Type="Int32" Name="APPLY_ID" Nullable="false" />
+    <Property Type="String" Name="NAME" Nullable="false" MaxLength="100" />
+    <Property Type="Int32" Name="APPROVE_STATUS" Nullable="false" />
+    <Property Type="Int32" Name="TEST_INDEX" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_1" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_2" Nullable="false" />
+    <Property Type="Double" Name="TEST_RESULT_3" Nullable="false" />
+  </ComplexType>
+</Schema>

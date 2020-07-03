@@ -1,0 +1,273 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="APTECH_SEM_3Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ANSWER">
+    <Key>
+      <PropertyRef Name="ANSWER_ID" />
+    </Key>
+    <Property Name="ANSWER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QUESTION_ID" Type="int" Nullable="false" />
+    <Property Name="ANSWER" Type="text" Nullable="false" />
+    <Property Name="STATUS" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JOB_APPLICATION">
+    <Key>
+      <PropertyRef Name="APPLY_ID" />
+    </Key>
+    <Property Name="APPLY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POST_ID" Type="int" Nullable="false" />
+    <Property Name="PERSONAL_ID" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="NAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ADDRESS" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PHONE" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="MAIL" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="EDUCATION" Type="text" Nullable="false" />
+    <Property Name="WORK_EXP" Type="text" Nullable="false" />
+    <Property Name="CREATED" Type="datetime" Nullable="false" />
+    <Property Name="APPROVE_STATUS" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="JOB_POST">
+    <Key>
+      <PropertyRef Name="POST_ID" />
+    </Key>
+    <Property Name="POST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CREATED" Type="datetime" Nullable="false" />
+    <Property Name="END_DATE" Type="datetime" Nullable="false" />
+    <Property Name="TITLE" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="POST" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="QUESTION">
+    <Key>
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="CATEGORY" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="QUESTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QUESTION" Type="text" Nullable="false" />
+    <Property Name="POINT" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="REPORT">
+    <Key>
+      <PropertyRef Name="CREATED" />
+    </Key>
+    <Property Name="CREATED" Type="datetime" Nullable="false" />
+    <Property Name="PERCENT_HIGH_SCORE" Type="float" Nullable="false" />
+    <Property Name="PERCENT_MIDDLE_SCORE" Type="float" Nullable="false" />
+    <Property Name="PERCENT_ATTEMPT" Type="float" Nullable="false" />
+    <Property Name="PERCENT_FAST_FINISH" Type="float" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_1" Type="float" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_1" Type="float" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_2" Type="float" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_2" Type="float" Nullable="false" />
+    <Property Name="PERCENT_HIGH_PART_3" Type="float" Nullable="false" />
+    <Property Name="PERCENT_MID_PART_3" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RESULT">
+    <Key>
+      <PropertyRef Name="APPLY_ID" />
+      <PropertyRef Name="TEST_ID" />
+    </Key>
+    <Property Name="APPLY_ID" Type="int" Nullable="false" />
+    <Property Name="TEST_ID" Type="int" Nullable="false" />
+    <Property Name="TEST_INDEX" Type="int" Nullable="false" />
+    <Property Name="TEST_RESULT_1" Type="float" Nullable="false" />
+    <Property Name="TEST_RESULT_2" Type="float" Nullable="false" />
+    <Property Name="TEST_RESULT_3" Type="float" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TEST">
+    <Key>
+      <PropertyRef Name="TEST_ID" />
+    </Key>
+    <Property Name="POST_ID" Type="int" Nullable="false" />
+    <Property Name="START_TIME" Type="datetime" Nullable="false" />
+    <Property Name="END_TIME" Type="datetime" Nullable="false" />
+    <Property Name="TEST_NAME" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="TEST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TEST_QUESTION">
+    <Key>
+      <PropertyRef Name="TEST_ID" />
+      <PropertyRef Name="QUESTION_ID" />
+    </Key>
+    <Property Name="TEST_ID" Type="int" Nullable="false" />
+    <Property Name="QUESTION_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USR">
+    <Key>
+      <PropertyRef Name="USERNAME" />
+    </Key>
+    <Property Name="APPLY_ID" Type="int" />
+    <Property Name="USERNAME" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ROLE" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="ANSWER_QUESTION">
+    <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+    <End Role="ANSWER" Type="Self.ANSWER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTION">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="ANSWER">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="JOB_APPLICATION_JOB_POST">
+    <End Role="JOB_POST" Type="Self.JOB_POST" Multiplicity="1" />
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_POST">
+        <PropertyRef Name="POST_ID" />
+      </Principal>
+      <Dependent Role="JOB_APPLICATION">
+        <PropertyRef Name="POST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RESULT_APPLICATION">
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="1" />
+    <End Role="RESULT" Type="Self.RESULT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_APPLICATION">
+        <PropertyRef Name="APPLY_ID" />
+      </Principal>
+      <Dependent Role="RESULT">
+        <PropertyRef Name="APPLY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RESULT_TEST">
+    <End Role="TEST" Type="Self.TEST" Multiplicity="1" />
+    <End Role="RESULT" Type="Self.RESULT" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEST">
+        <PropertyRef Name="TEST_ID" />
+      </Principal>
+      <Dependent Role="RESULT">
+        <PropertyRef Name="TEST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_POST">
+    <End Role="JOB_POST" Type="Self.JOB_POST" Multiplicity="1" />
+    <End Role="TEST" Type="Self.TEST" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_POST">
+        <PropertyRef Name="POST_ID" />
+      </Principal>
+      <Dependent Role="TEST">
+        <PropertyRef Name="POST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_QUESTION_QUESTION">
+    <End Role="QUESTION" Type="Self.QUESTION" Multiplicity="1" />
+    <End Role="TEST_QUESTION" Type="Self.TEST_QUESTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QUESTION">
+        <PropertyRef Name="QUESTION_ID" />
+      </Principal>
+      <Dependent Role="TEST_QUESTION">
+        <PropertyRef Name="QUESTION_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TEST_QUESTION_TEST">
+    <End Role="TEST" Type="Self.TEST" Multiplicity="1" />
+    <End Role="TEST_QUESTION" Type="Self.TEST_QUESTION" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TEST">
+        <PropertyRef Name="TEST_ID" />
+      </Principal>
+      <Dependent Role="TEST_QUESTION">
+        <PropertyRef Name="TEST_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="USRS_JOB_APPLICATION">
+    <End Role="JOB_APPLICATION" Type="Self.JOB_APPLICATION" Multiplicity="0..1" />
+    <End Role="USR" Type="Self.USR" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JOB_APPLICATION">
+        <PropertyRef Name="APPLY_ID" />
+      </Principal>
+      <Dependent Role="USR">
+        <PropertyRef Name="APPLY_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="FIND_QID_FROM_USERNAME" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="USERNAME" Type="varchar" Mode="In" />
+  </Function>
+  <Function Name="FIND_QUESTION_WITH_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TEST_ID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="FIND_USR_BY_TEST_END" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="TIME1" Type="datetime" Mode="In" />
+    <Parameter Name="TIME2" Type="datetime" Mode="In" />
+  </Function>
+  <Function Name="GET_1_RANDOM_QUESTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CATEGORY" Type="nvarchar" Mode="In" />
+    <Parameter Name="POINT" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_2_RANDOM_QUESTIONS" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="CATEGORY" Type="nvarchar" Mode="In" />
+    <Parameter Name="POINT" Type="int" Mode="In" />
+  </Function>
+  <Function Name="GET_LAST_QUESTION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_LAST_TEST" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="GET_RESULT_WITH_APPLY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="APTECH_SEM_3ModelStoreContainer">
+    <EntitySet Name="ANSWER" EntityType="Self.ANSWER" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOB_APPLICATION" EntityType="Self.JOB_APPLICATION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="JOB_POST" EntityType="Self.JOB_POST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QUESTION" EntityType="Self.QUESTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="REPORT" EntityType="Self.REPORT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RESULT" EntityType="Self.RESULT" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEST" EntityType="Self.TEST" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TEST_QUESTION" EntityType="Self.TEST_QUESTION" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USR" EntityType="Self.USR" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="ANSWER_QUESTION" Association="Self.ANSWER_QUESTION">
+      <End Role="QUESTION" EntitySet="QUESTION" />
+      <End Role="ANSWER" EntitySet="ANSWER" />
+    </AssociationSet>
+    <AssociationSet Name="JOB_APPLICATION_JOB_POST" Association="Self.JOB_APPLICATION_JOB_POST">
+      <End Role="JOB_POST" EntitySet="JOB_POST" />
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+    </AssociationSet>
+    <AssociationSet Name="RESULT_APPLICATION" Association="Self.RESULT_APPLICATION">
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+      <End Role="RESULT" EntitySet="RESULT" />
+    </AssociationSet>
+    <AssociationSet Name="RESULT_TEST" Association="Self.RESULT_TEST">
+      <End Role="TEST" EntitySet="TEST" />
+      <End Role="RESULT" EntitySet="RESULT" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_POST" Association="Self.TEST_POST">
+      <End Role="JOB_POST" EntitySet="JOB_POST" />
+      <End Role="TEST" EntitySet="TEST" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_QUESTION_QUESTION" Association="Self.TEST_QUESTION_QUESTION">
+      <End Role="QUESTION" EntitySet="QUESTION" />
+      <End Role="TEST_QUESTION" EntitySet="TEST_QUESTION" />
+    </AssociationSet>
+    <AssociationSet Name="TEST_QUESTION_TEST" Association="Self.TEST_QUESTION_TEST">
+      <End Role="TEST" EntitySet="TEST" />
+      <End Role="TEST_QUESTION" EntitySet="TEST_QUESTION" />
+    </AssociationSet>
+    <AssociationSet Name="USRS_JOB_APPLICATION" Association="Self.USRS_JOB_APPLICATION">
+      <End Role="JOB_APPLICATION" EntitySet="JOB_APPLICATION" />
+      <End Role="USR" EntitySet="USR" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

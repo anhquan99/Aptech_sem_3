@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Show Applications";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Applications</h3>
+                        <br />
+                        <lable class="col-sm-12 text-danger">
+                            @ViewBag.Error
+
+                        </lable>
+                        
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Post Id</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Education</th>
+                                    <th>Work Exp</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>More Detail</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.ApplicationList != null)
+                                {
+                                    foreach (var application in ViewBag.ApplicationList)
+                                    {
+                                        string status;
+                                        switch (application.APPROVE_STATUS)
+                                        {
+                                            case -1:
+                                                status = "Unapproved";
+                                                break;
+                                            case 1:
+                                                status = "Approved";
+                                                break;
+                                            case -2:
+                                                status = "Failed";
+                                                break;
+                                            case 2:
+                                                status = "Passed";
+                                                break;
+                                            default:
+                                                status = "Unseen";
+                                                break;
+                                        }
+                                <tr>
+                                    <td>@application.POST_ID</td>
+                                    <td>@application.NAME</td>
+                                    <td>@application.ADDRESS</td>
+                                    <td>@application.EDUCATION</td>
+                                    <td>@application.WORK_EXP</td>
+
+                                    <td>@application.CREATED</td>
+                                    <td>@status</td>
+                                    <td><a href="@Url.Action("ApplicationDetail", "Manager", new { applyId = application.APPLY_ID})">More Detail</a></td>
+
+
+                                </tr>
+                                    }
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+

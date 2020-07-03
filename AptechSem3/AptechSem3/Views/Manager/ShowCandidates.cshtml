@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Show Candidates";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Candidates</h3>
+
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Password</th>
+
+                                        <th>Role</th>
+                                        <th>Apply Detail</th>
+
+                                        <th>Delete</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.CandidateList != null)
+                                    {
+                                        foreach (var candidate in ViewBag.CandidateList)
+                                        {
+
+                                    <tr>
+                                        <td>@candidate.USERNAME</td>
+                                        <td>@candidate.PASSWORD</td>
+                                        <td>@candidate.ROLE</td>
+
+                                        @if (candidate.ROLE != "MANAGER")
+                                        {
+                                            <td><a href="@Url.Action("ApplicationDetail","Manager", new { applyId = candidate.APPLY_ID})">Detail</a></td>
+                                            <td><a href="@Url.Action("DeleteCandidate","Manager", new { username = candidate.USERNAME})">Delete</a></td>
+
+                                        }
+
+
+
+
+
+                                    </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+

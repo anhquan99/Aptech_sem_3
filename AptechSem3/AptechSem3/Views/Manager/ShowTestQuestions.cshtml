@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Show Test Questions";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Questions</h3>
+
+
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-hover text-nowrap " >
+                            <thead>
+                                <tr>
+                                    <th>Question Id</th>
+                                    <th>Category</th>
+                                    <th>Question Text</th>
+                                    <th>Point</th>
+                                    <th>Answers</th>
+                                    @if (ViewBag.testDate == true)
+                                    {
+                                        <th>Update</th>
+                                        <th>Remove</th>
+                                    }
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.QuestionList != null)
+                                {
+                                    foreach (var question in ViewBag.QuestionList)
+                                    {
+
+                                        <tr>
+                                            <td>@question.QUESTION_ID</td>
+                                            <td>@question.CATEGORY</td>
+                                            <td>@question.QUESTION1</td>
+                                            <td>@question.POINT</td>
+                                            <td><a href="@Url.Action("ShowAnswers","Manager", new { questionId = question.QUESTION_ID})">Answers</a></td>
+                                            @if (ViewBag.testDate == true)
+                                            {
+                                                <td><a href="@Url.Action("UpdateQuestion","Manager", new { questionId = question.QUESTION_ID})">Update</a></td>
+                                                <td><a href="@Url.Action("RemoveQuestion","Manager", new { questionId = question.QUESTION_ID, testId = ViewBag.testId})">Remove</a></td>
+                                            }
+
+
+
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    @if (ViewBag.testDate == true)
+                    {
+                        <div class="card-footer">
+                            <a class="btn btn-primary card-link" href="@Url.Action("CreateQAToTest", "Manager", new { testId = ViewBag.testId })">Add a New Question</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("RemoveQuestions", "Manager", new { testId = ViewBag.testId })">Remove all Questions</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("AddQuestions", "Manager", new { testId = ViewBag.testId })">Generate Questions</a>
+                            <a class="btn btn-primary card-link" href="@Url.Action("AddExistedQuestion", "Manager", new { testId = ViewBag.testId })">Add Existed Question</a>
+
+                        </div>
+                    }
+
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+

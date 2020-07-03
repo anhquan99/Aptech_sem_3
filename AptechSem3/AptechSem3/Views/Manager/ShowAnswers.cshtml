@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "ShowAnswers";
+    Layout = "~/Views/Shared/ManagerLayout.cshtml";
+}
+
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Answers</h3>
+
+                            
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0">
+                            <table class="table table-hover text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Answer Id</th>
+                                        <th>Question Id</th>
+                                        <th>Answer Text</th>
+                                        <th>Status</th>
+                                        <th>Update</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (ViewBag.AnswerList != null)
+                                    {
+                                        foreach (var answer in ViewBag.AnswerList)
+                                        {
+                                            string status;
+                                            if (answer.STATUS == true)
+                                            {
+                                                status = "Correct";
+                                            }
+                                            else {
+                                                status = "Incorrect";
+                                            }
+
+                                            <tr>
+                                                <td>@answer.ANSWER_ID</td>
+                                                <td>@answer.QUESTION_ID</td>
+                                                <td>@answer.ANSWER1</td>
+                                                <td>@status</td>
+                                                <td><a href="@Url.Action("UpdateAnswer","Manager", new { answerId = answer.ANSWER_ID})">Update</a></td>
+                                            </tr>
+                                        }
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
